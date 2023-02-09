@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Jobs>
  */
-class JobsFactory extends Factory
+class JobFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +18,11 @@ class JobsFactory extends Factory
     {
         return [
             'title' => fake()->name(),
-            'location' => fake()->number_format(2,10),
-            'rate' => fake()->slug(),
-            'hourly_rate' => fake()->number_format(50,100),
-            'labour_id' => fake()->number_format(1,10),
+            'location' => fake()->city(),
+            'rate' => 'BId',
+            'description' => fake()->sentence(),
+            'job_rate' => fake()->numberBetween(100,500),
+            //'employer_id' => fake()->numberBetween(1,10),
         ];
     }
 }
