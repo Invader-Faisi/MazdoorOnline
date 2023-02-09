@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mazdoor Online</title>
-    <link rel="icon" type="image/x-icon" href="{{url('images/logo.jpg')}}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.jpg') }}">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -14,7 +14,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
 
-    <link type="text/css" href="{{ url('/css/custom.css') }}" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('/css/custom.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -24,7 +24,9 @@
     </nav>
 
     <!-- Content of Main Page -->
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
     <!-- /Content of Main Page -->
 
 
