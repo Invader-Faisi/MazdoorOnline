@@ -9,8 +9,8 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
-        <a class="navbar-brand mt-2 mt-lg-0" href="{{url('/')}}">
-            <img src="{{ url('/images/logo.jpg') }}" height="40" alt="Mazdoor Online" loading="lazy" />
+        <a class="navbar-brand mt-2 mt-lg-0" href="{{ url('/') }}">
+            <img src="{{ asset('/images/logo.jpg') }}" height="40" alt="Mazdoor Online" loading="lazy" />
         </a>
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -29,8 +29,8 @@
     <div class="d-flex align-items-center">
         <!-- Avatar -->
         <div class="dropdown">
-            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
-                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
                     alt="Black and White Portrait of a Man" loading="lazy" />
             </a>

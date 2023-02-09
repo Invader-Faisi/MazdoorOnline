@@ -3,7 +3,7 @@
     <div class="card testimonial-card mt-2 mb-3">
         <div class="card-up aqua-gradient"></div>
         <div class="avatar mx-auto white">
-            <img src="{{ url('images/labour.jpg') }}" class="rounded-circle img-fluid" alt="Cards">
+            <img src="{{ asset('images/labour.jpg') }}" class="rounded-circle img-fluid" alt="Cards">
         </div>
         <div class="card-body text-center">
             <h4 class="card-title font-weight-bold">Martha Smith</h4>
