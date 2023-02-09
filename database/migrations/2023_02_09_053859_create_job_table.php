@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id('job_id');
             $table->string('title');
             $table->string('location');
-            $table->string('rate');
-            $table->text('description');            
-
+            $table->enum('rate',['Fixed','Bid']);
+            $table->text('description');  
+            $table->integer('job_rate')->nullable();    
+            $table->unsignedBigInteger('employer_id')->nullable();
+            $table->foreign('employer_id')->references('employer_id')->on('employer');
         });
     }
 

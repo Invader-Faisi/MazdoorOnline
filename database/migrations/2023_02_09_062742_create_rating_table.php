@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('portfolio', function (Blueprint $table) {
-            $table->id('portfolio_id');
-            $table->string('name');
-            $table->integer('experience');
-            $table->string('skills');
-            $table->integer('hourly_rate');     
+        Schema::create('rating', function (Blueprint $table) {
+            $table->id('rating_id');
+            $table->integer('ratings');
+            $table->unsignedBigInteger('employer_id')->nullable();
             $table->unsignedBigInteger('labour_id')->nullable();
-            $table->foreign('labour_id')->references('labour_id')->on('labour');      
+            $table->foreign('employer_id')->references('employer_id')->on('employer');
+            $table->foreign('labour_id')->references('labour_id')->on('labour');
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolio');
+        Schema::dropIfExists('rating');
     }
 };
