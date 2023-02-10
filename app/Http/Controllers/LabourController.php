@@ -14,9 +14,9 @@ class LabourController extends Controller
         return view('labour.jobs')->with($data);
     }
 
-    public function details($details)
+    public function details($id)
     {
-        $job = Job::where('job_id', $details)->first();
+        $job = Job::where('job_id', $id)->first();
         $data = compact('job');
         return view('labour.jobDetails')->with($data);
     }

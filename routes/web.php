@@ -24,6 +24,9 @@ Route::get('/jobs', [LabourController::class, 'index']);
 // Getting detail of single job for labour
 Route::get('/jobs/{job}', [LabourController::class, 'details']);
 
+
+
+
 Route::get('/login', function () {
     return view('components/forms/login');
 });
