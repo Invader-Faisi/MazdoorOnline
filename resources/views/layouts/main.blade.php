@@ -19,7 +19,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
         <x-navbar />
     </nav>
 
@@ -30,7 +30,7 @@
     <!-- /Content of Main Page -->
 
 
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <footer class="bg-light text-center text-lg-start">
         <x-footer />
     </footer>
 

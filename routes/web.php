@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LabourController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 
 
+// Getting all jobs for labour
+Route::get('/jobs', [LabourController::class, 'index']);
 
-
+// Getting detail of single job for labour
+Route::get('/jobs/{job}', [LabourController::class, 'details']);
 
 Route::get('/login', function () {
     return view('components/forms/login');
