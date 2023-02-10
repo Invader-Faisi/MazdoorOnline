@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Getting main page of application
 Route::get('/', [MainController::class, 'index']);
+
+
+
+
 
 Route::get('/login', function () {
     return view('components/forms/login');
