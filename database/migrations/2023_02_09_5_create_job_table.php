@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rating', function (Blueprint $table) {
-            $table->id('rating_id');
-            $table->integer('ratings');
+        Schema::create('jobs', function (Blueprint $table) {
+            $table->id('job_id');
+            $table->string('title');
+            $table->string('location');
+            $table->enum('rate',['Fixed','Bid']);
+            $table->text('description');  
+            $table->integer('job_rate')->nullable();    
             $table->unsignedBigInteger('employer_id')->nullable();
-            $table->unsignedBigInteger('labour_id')->nullable();
             $table->foreign('employer_id')->references('employer_id')->on('employer');
-            $table->foreign('labour_id')->references('labour_id')->on('labour');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rating');
+        Schema::dropIfExists('jobs');
     }
 };

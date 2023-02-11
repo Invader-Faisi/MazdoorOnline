@@ -17,15 +17,17 @@ use Illuminate\Support\Facades\Route;
 // Getting main page of application
 Route::get('/', [MainController::class, 'index']);
 
+// Displaying profile page of labour
+Route::get('/labour/{profile}',[LabourController::class, 'index']);
 
 // Getting all jobs for labour
-Route::get('/jobs', [LabourController::class, 'index']);
+Route::get('/jobs', [LabourController::class, 'jobs']);
 
 // Getting detail of single job for labour
 Route::get('/jobs/{job}', [LabourController::class, 'details']);
 
-
-
+// Getting portfolios of labour
+Route::get('/labour/{portfolio}', [LabourController::class, 'details']);
 
 Route::get('/login', function () {
     return view('components/forms/login');
