@@ -1,129 +1,114 @@
 @extends('layouts.main')
 
 @section('content')
-    <section style="background-color: #eee;">
-        <div class="container pt-5 my-5">
-            <h1 class="text-center text-bold text-primary"><u>Portfolio</u></h1>
-            <section class="mx-auto pt-5" style="max-width: 35rem;">
-                <form>
-                    <!-- Name -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="name" name="name" class="form-control" />
-                        <label class="form-label" for="name">Name</label>
+<section style="background-color: #eee;">
+    <div class="container pt-5 my-5">
+        <h1 class="text-center text-bold text-primary"><u>Portfolios</u></h1>
+        <section class="mx-auto pt-5" style="max-width: 35rem;">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <input type="text" id="name" name="name" class="form-control" />
+                            <label class="form-label" for="name">Name</label>
+                        </div>
                     </div>
-
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="number" id="experience" name="experience" class="form-control" />
-                        <label class="form-label" for="experience">Experience</label>
+                    <div class="col">
+                        <!-- Experience input -->
+                        <div class="form-outline">
+                            <input type="email" id="experience" name="experience" class="form-control" />
+                            <label class="form-label" for="experience">Experience</label>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Address input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="skills" name="skills" class="form-control" />
-                        <label class="form-label" for="skills">Enter Skills (comma separated) </label>
+                <hr />
+
+                <div class="row">
+                    <div class="col">
+                        <!-- Skills input -->
+                        <div class="form-outline">
+                            <input type="text" id="skills" name="skills" class="form-control" />
+                            <label class="form-label" for="skills">Enter Skills (comma separated)</label>
+                        </div>
                     </div>
-
-                    <!-- Contact input -->
-                    <div class="form-outline mb-4">
-                        <input type="number" id="hourly_rate" name="hourly_rate" class="form-control" />
-                        <label class="form-label" for="hourly_rate">Hourly Rate</label>
+                    <div class="col">
+                        <!-- Hourly Rate input -->
+                        <div class="form-outline">
+                            <input type="text" id="hourly_rate" name="hourly_rate" class="form-control" />
+                            <label class="form-label" for="hourly_rate">Hourly Rate</label>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                <hr />
 
-                </form>
-            </section>
-        </div>
+                <div class="row">
+                    <div class="col">
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
 
+    <div class="container mb-5">
+        <hr />
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
-                    <th>Name</th>
-                    <th>Title</th>
+                    <th>Portfolio Title</th>
+                    <th>Skills</th>
+                    <th>Hourly Rate</th>
+                    <th>Experience</th>
                     <th>Status</th>
-                    <th>Position</th>
-                    <th>Actions</th>
+                    <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($portfolios as $portfolio)
+
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                style="width: 45px; height: 45px" class="rounded-circle" />
+                            <img src="{{asset('/images/user.jpg')}}" alt="User" style="width: 45px; height: 45px"
+                                class="rounded-circle" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                                <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                <p class="fw-bold mb-1">{{$portfolio->name}}</p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">Software engineer</p>
-                        <p class="text-muted mb-0">IT department</p>
+                        <x-cards.skills :skills="$portfolio->skills" />
                     </td>
                     <td>
-                        <span class="badge badge-success rounded-pill d-inline">Active</span>
+                        Rs :&nbsp;{{$portfolio->hourly_rate}}
                     </td>
-                    <td>Senior</td>
                     <td>
-                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
+                        {{$portfolio->experience}}&nbsp;Years
+                    </td>
+                    <td>
+                        @if ($portfolio->status = "Pending")
+                        <span class="badge badge-warning rounded-pill d-inline">{{$portfolio->status}}</span>
+                        @else
+                        <span class="badge badge-success rounded-pill d-inline">{{$portfolio->status}}</span>
+                        @endif
+
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm btn-rounded">
+                            Post
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-rounded">
+                            Delete
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt=""
-                                style="width: 45px; height: 45px" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Alex Ray</p>
-                                <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Consultant</p>
-                        <p class="text-muted mb-0">Finance</p>
-                    </td>
-                    <td>
-                        <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                    </td>
-                    <td>Junior</td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
-                                style="width: 45px; height: 45px" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Kate Hunington</p>
-                                <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Designer</p>
-                        <p class="text-muted mb-0">UI/UX</p>
-                    </td>
-                    <td>
-                        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                    </td>
-                    <td>Senior</td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
-    </section>
+    </div>
+</section>
 @endsection

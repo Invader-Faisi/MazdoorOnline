@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('rate', ['Fixed', 'Bid']);
             $table->text('description');
             $table->integer('job_rate')->nullable();
+            $table->enum('status', ['Pending', 'Active'])->default('Pending');
             $table->foreignId('employer_id')->constrained('employers');
         });
     }

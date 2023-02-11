@@ -9,5 +9,5 @@ class Portfolio extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name', 'experience', 'skills', 'hourly_rate','labour_id'];
+    protected $fillable = ['name', 'experience', 'skills', 'hourly_rate', 'status', 'labour_id'];
 }

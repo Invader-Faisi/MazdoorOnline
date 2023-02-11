@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 
 // Displaying profile page of labour
-Route::get('/labour/{profile}',[LabourController::class, 'index']);
+Route::get('/labour/profile/{profile}', [LabourController::class, 'index']);
 
 // Getting all jobs for labour
-Route::get('/jobs', [LabourController::class, 'jobs']);
+Route::get('/labour/jobs', [LabourController::class, 'jobs']);
 
 // Getting detail of single job for labour
-Route::get('/jobs/{job}', [LabourController::class, 'details']);
+Route::get('/labour/jobs/{job}', [LabourController::class, 'details']);
 
 // Getting portfolios of labour
-Route::get('/labour/{portfolio}', [LabourController::class, 'details']);
+Route::get('/labour/portfolio/{portfolio}', [LabourController::class, 'portfolios']);
 
 Route::get('/login', function () {
     return view('components/forms/login');

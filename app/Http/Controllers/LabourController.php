@@ -30,7 +30,10 @@ class LabourController extends Controller
         return view('labour.jobDetails')->with($data);
     }
 
-    public function portfolio($id)
+    public function portfolios($id)
     {
+        $portfolios = Portfolio::all()->where('labour_id', $id);
+        $data = compact('portfolios');
+        return view('labour.portfolio')->with($data);
     }
 }
