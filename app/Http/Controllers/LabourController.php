@@ -11,7 +11,7 @@ class LabourController extends Controller
 {
     public function index($id)
     {
-        $profile = Labour::where('labour_id', $id)->first();
+        $profile = Labour::find($id);
         $data = compact('profile');
         return view('labour.index')->with($data);
     }
@@ -25,13 +25,12 @@ class LabourController extends Controller
 
     public function details($id)
     {
-        $job = Job::where('job_id', $id)->first();
+        $job = Job::find($id);
         $data = compact('job');
         return view('labour.jobDetails')->with($data);
     }
 
     public function portfolio($id)
     {
-        $portfolios;
     }
 }

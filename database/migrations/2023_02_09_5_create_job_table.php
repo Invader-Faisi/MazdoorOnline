@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id('job_id');
+            $table->id();
             $table->string('title');
             $table->string('location');
-            $table->enum('rate',['Fixed','Bid']);
-            $table->text('description');  
-            $table->integer('job_rate')->nullable();    
-            $table->unsignedBigInteger('employer_id')->nullable();
-            $table->foreign('employer_id')->references('employer_id')->on('employer');
+            $table->enum('rate', ['Fixed', 'Bid']);
+            $table->text('description');
+            $table->integer('job_rate')->nullable();
+            $table->foreignId('employer_id')->constrained('employers');
         });
     }
 

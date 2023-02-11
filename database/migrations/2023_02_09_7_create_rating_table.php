@@ -14,12 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->id('rating_id');
+            $table->id();
             $table->integer('ratings');
-            $table->unsignedBigInteger('employer_id')->nullable();
-            $table->unsignedBigInteger('labour_id')->nullable();
-            $table->foreign('employer_id')->references('employer_id')->on('employer');
-            $table->foreign('labour_id')->references('labour_id')->on('labour');
+            $table->foreignId('employer_id')->constrained('employers');
+            $table->foreignId('labour_id')->constrained('labours');
         });
     }
 

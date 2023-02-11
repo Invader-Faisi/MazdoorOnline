@@ -14,13 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('portfolios', function (Blueprint $table) {
-            $table->id('portfolio_id');
+            $table->id();
             $table->string('name');
             $table->integer('experience');
             $table->string('skills');
-            $table->integer('hourly_rate');     
-            $table->unsignedBigInteger('labour_id')->nullable();
-            $table->foreign('labour_id')->references('labour_id')->on('labour');      
+            $table->integer('hourly_rate');
+            $table->foreignId('labour_id')->constrained('labours');
         });
     }
 

@@ -21,8 +21,8 @@ class JobFactory extends Factory
             'location' => fake()->city(),
             'rate' => 'BId',
             'description' => fake()->sentence(),
-            'job_rate' => fake()->numberBetween(100,500),
-            //'employer_id' => fake()->numberBetween(1,10),
+            'job_rate' => fake()->numberBetween(100, 500),
+            'employer_id' => fake()->numberBetween(1, 10),
         ];
     }
 }
