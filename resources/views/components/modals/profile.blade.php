@@ -1,4 +1,6 @@
-<!-- Labour Profile For Rating-->
+@props(['profile'])
+
+<!-- Profile Update Modal-->
 <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -10,8 +12,7 @@
                 <form>
                     <!-- Name -->
                     <div class="form-outline mb-4">
-                        <input type="text" id="name" name="name" class="form-control"
-                            value="{{ $profile->name }}" />
+                        <input type="text" id="name" name="name" class="form-control" value="{{ $profile->name }}" />
                         <label class="form-label" for="name">Full Name</label>
                     </div>
 

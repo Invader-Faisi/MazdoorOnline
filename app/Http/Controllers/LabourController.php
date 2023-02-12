@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biding;
 use App\Models\Job;
 use App\Models\Labour;
 use App\Models\Portfolio;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class LabourController extends Controller
@@ -23,17 +25,31 @@ class LabourController extends Controller
         return view('labour.jobs')->with($data);
     }
 
-    public function details($id)
+    public function jobdetails($id)
     {
         $job = Job::find($id);
         $data = compact('job');
         return view('labour.jobDetails')->with($data);
     }
 
-    public function portfolios($id)
+    public function laboursportfolio($id)
     {
         $portfolios = Portfolio::all()->where('labour_id', $id);
         $data = compact('portfolios');
         return view('labour.portfolio')->with($data);
+    }
+
+    public function addBiding(Request $request)
+    {
+        $bid = new Biding();
+        $bid->bid = $request['bid'];
+        $bid->job_id = $request['job_id'];
+        $bid->labour_id = 2;
+        $bid->save();
+        return redirect()->back()->with('success', 'Bid Added Successfully');
+    }
+
+    public function addRating(Request $request)
+    {
     }
 }

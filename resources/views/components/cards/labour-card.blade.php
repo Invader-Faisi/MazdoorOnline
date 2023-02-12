@@ -32,13 +32,13 @@
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                     <div class="d-flex flex-row align-items-center mb-1">
-                        <h4 class="mb-1 me-1">${{ $Portfolio->hourly_rate }}</h4>
+                        <h4 class="mb-1 me-1">Rs : {{ $Portfolio->hourly_rate }}</h4>
                         <span class="text-danger"></span>
                     </div>
                     <h6 class="text-success">Hourly Rate</h6>
                 </div>
                 <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-primary btn-sm" type="button">Details</button>
+                    <a href="/employer/portfolio/{{$Portfolio->id}}" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>

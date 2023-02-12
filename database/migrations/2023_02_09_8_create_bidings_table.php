@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ratings', function (Blueprint $table) {
+        Schema::create('bidings', function (Blueprint $table) {
             $table->id();
-            $table->integer('ratings');
-            $table->enum('rating_by', ['Employer', 'Labour']);
-            $table->foreignId('employer_id')->constrained('employers');
+            $table->integer('bid');
+            $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('labour_id')->constrained('labours');
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ratings');
+        Schema::dropIfExists('bidings');
     }
 };

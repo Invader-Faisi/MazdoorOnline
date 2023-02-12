@@ -31,7 +31,7 @@
                     <h6 class="text-success">{{ $Job->rate }}</h6>
                 </div>
                 <div class="d-flex flex-column mt-4">
-                    <a href="/labour/jobs/{{$Job->id}}" class="btn btn-primary btn-sm">Details</a>
+                    <a href="/labour/job/{{$Job->id}}" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>
