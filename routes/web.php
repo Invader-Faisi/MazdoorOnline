@@ -19,7 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 
 // Rating for both of Labour and Employer
-Route::post('/rating', [MainController::class, 'ratings']);
+Route::post('/rating', [MainController::class, 'SaveRating']);
+
+// Route for getting registeration form
+Route::get('/register/{type}',[MainController::class, 'GetRegistrationForm']);
+
+// Route for registering user
+Route::post('/register',[MainController::class, 'SaveUser']);
 
 
 
@@ -60,6 +66,3 @@ Route::get('/login', function () {
     return view('components/forms/login');
 });
 
-Route::get('/register', function () {
-    return view('components/forms/register');
-});

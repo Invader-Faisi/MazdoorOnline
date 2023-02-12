@@ -91,7 +91,6 @@
                         <th>Rate</th>
                         <th>Description</th>
                         <th>Status</th>
-                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,24 +113,11 @@
                                 {{ $job->description }}
                             </td>
                             <td>
-                                <span class="badge badge-danger rounded-pill d-inline">{{ $job->status }}</span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    @if ($job->status == 'Pending')
-                                        <button type="button" class="btn btn-link btn-rounded" disabled>
-                                            Post
-                                        </button>
-                                    @else
-                                        <button type="button" class="btn btn-link btn-rounded">
-                                            Post
-                                        </button>
-                                    @endif
-
-                                    <button type="button" class="btn btn-link btn-rounded">
-                                        Delete
-                                    </button>
-                                </div>
+                                @if ($job->status == 'Pending')
+                                    <span class="badge badge-warning rounded-pill d-inline">{{ $job->status }}</span>
+                                @else
+                                    <span class="badge badge-success rounded-pill d-inline">{{ $job->status }}</span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

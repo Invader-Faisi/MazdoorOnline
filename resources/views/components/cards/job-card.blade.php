@@ -16,11 +16,19 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-6">
                     <h5 class="text-bold text-dark">{{ $Job->title }}</h5>
+                    <p> Location : <span class="text-bold text-success">{{ $Job->location }}</span></p>
                     <div class="d-flex flex-row">
-                        <p> Location : <span class="text-bold text-success">{{ $Job->location }}</span></p>
+                        <p style="font-size: 12px">Employer Rating :</p>
+                        <div class="text-danger me-2" style="font-size:12px">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
                     </div>
                     <div class="mt-1 mb-0 text-muted ">
-                        <p> {{ $Job->description }}</p>
+                        <p style="font-size: 14px">{{ $Job->description }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">

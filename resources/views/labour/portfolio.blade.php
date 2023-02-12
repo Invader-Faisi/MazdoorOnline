@@ -11,7 +11,7 @@
                             <!-- Name input -->
                             <div class="form-outline">
                                 <input type="text" id="name" name="name" class="form-control" />
-                                <label class="form-label" for="name">Name</label>
+                                <label class="form-label" for="name">Portfolio Title</label>
                             </div>
                         </div>
                         <div class="col">
@@ -54,7 +54,7 @@
             </section>
         </div>
 
-        <div class="container pb-5">
+        <div class="container-fluid pb-5">
             <hr />
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -64,7 +64,6 @@
                         <th>Hourly Rate</th>
                         <th>Experience</th>
                         <th>Status</th>
-                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,15 +93,6 @@
                                 @else
                                     <span class="badge badge-success rounded-pill d-inline">{{ $portfolio->status }}</span>
                                 @endif
-
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success btn-sm btn-rounded">
-                                    Post
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm btn-rounded">
-                                    Delete
-                                </button>
                             </td>
                         </tr>
                     @endforeach

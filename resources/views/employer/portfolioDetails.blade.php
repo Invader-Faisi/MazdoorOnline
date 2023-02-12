@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         Labour :&nbsp;<span class="text-success">{{ $portfolio->name }}</span>
-                        &nbsp;&nbsp;
+                        <br />
                         Portfolio Title :&nbsp;<span class="text-danger">{{ $portfolio->name }}</span>
                     </h5>
                     <hr>
