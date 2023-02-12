@@ -17,10 +17,10 @@
                 <div class="col-md-6 col-lg-6 col-xl-6">
                     <h5 class="text-bold text-dark">{{ $Job->title }}</h5>
                     <div class="d-flex flex-row">
-                        Location : <span class="text-bold text-success">{{ $Job->location }}</span>
+                        <p> Location : <span class="text-bold text-success">{{ $Job->location }}</span></p>
                     </div>
                     <div class="mt-1 mb-0 text-muted ">
-                        {{ $Job->description }}
+                        <p> {{ $Job->description }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
@@ -31,7 +31,7 @@
                     <h6 class="text-success">{{ $Job->rate }}</h6>
                 </div>
                 <div class="d-flex flex-column mt-4">
-                    <a href="/labour/job/{{$Job->id}}" class="btn btn-primary btn-sm">Details</a>
+                    <a href="/labour/job/{{ $Job->id }}" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>

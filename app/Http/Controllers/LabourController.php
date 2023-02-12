@@ -48,8 +48,4 @@ class LabourController extends Controller
         $bid->save();
         return redirect()->back()->with('success', 'Bid Added Successfully');
     }
-
-    public function addRating(Request $request)
-    {
-    }
 }

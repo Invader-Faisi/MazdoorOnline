@@ -45,12 +45,14 @@ Route::post('/labour/bid', [LabourController::class, 'addBiding']);
 // Displaying profile page of Employer
 Route::get('/employer/profile/{id}', [EmployerController::class, 'index']);
 
-// Displaying portfolios for Employer
+// Displaying all portfolios for Employer
 Route::get('/employer/portfolios', [EmployerController::class, 'portfolios']);
 
-// Displaying portfolio details for Employer
+// Displaying single portfolio details for Employer
 Route::get('/employer/portfolio/{id}', [EmployerController::class, 'portfoliodetails']);
 
+// Getting jobs posted by employer
+Route::get('/employer/jobs/{id}', [EmployerController::class, 'employersjob']);
 
 
 

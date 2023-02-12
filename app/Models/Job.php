@@ -9,5 +9,5 @@ class Job extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['title', 'location', 'rate', 'description', 'job_rate', 'status', 'employer_id'];
+    protected $fillable = ['category','title', 'location', 'rate', 'description', 'job_rate', 'status', 'employer_id'];
 }

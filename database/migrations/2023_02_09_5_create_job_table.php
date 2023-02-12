@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->enum('category', ['Individual', 'Corporate']);
             $table->string('title');
             $table->string('location');
             $table->enum('rate', ['Fixed', 'Bid']);

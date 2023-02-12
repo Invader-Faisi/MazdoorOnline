@@ -17,6 +17,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
+            'category' => "Individual",
             'title' => fake()->name(),
             'location' => fake()->city(),
             'rate' => 'BId',

@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->enum('title', ['Electrical', 'Paint', 'Maison', 'Plumbing', 'Guard', 'Corporate']);
-            $table->string('type');
+            $table->enum('category', ['Driver', 'Carpenter', 'Painter', 'Mechanic', 'Car Electrician', 'General Electricain', 'Contractor']);            
         });
     }
 
