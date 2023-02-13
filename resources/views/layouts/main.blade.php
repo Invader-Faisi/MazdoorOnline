@@ -22,7 +22,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
         <x-navbar />
     </nav>
-
+    <x-flash-message />
     <!-- Content of Main Page -->
     <main>
         @yield('content')

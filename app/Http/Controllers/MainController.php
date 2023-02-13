@@ -15,8 +15,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        $jobs = Job::all();
-        $portfolios = Portfolio::all();
+        $jobs = Job::simplePaginate(3);
+        $portfolios = Portfolio::simplePaginate(3);
         $data['jobs'] = $jobs;
         $data['portfolios'] = $portfolios;
         return view('index')->with($data);
@@ -68,14 +68,55 @@ class MainController extends Controller
                 $saved = $login->save();
                 if($saved)
                 {
-                    $response = "Registered Successfully ! Please Login to Continue";
-                    $data = compact('response');
-                    return view('components/forms/login')->with($data);
+                    return redirect('/login')->with('message', 'Registered Successfully ! Please Login to Continue');
                 }
             }
             
         }
 
+    }
+
+    public function Login()
+    {
+        return view('components/forms/login');
+    }
+
+    public function AuthenticateUser(Request $request)
+    {
+        $request->validate([
+            'email' => 'required | email',
+            'password' => 'required' ,
+        ]);
+        
+        $email = $request['email'];
+        $password = md5($request['password']);
+        
+        $login = Login::where('email', $email)->where('password', $password)->first();
+        if($login)
+        {
+           session()->put('email',$login->email);
+           session()->put('user_type',$login->type);
+
+           if($login->type == "employer"){
+                $emp = Employer::select('id','name')->where('email', $login->email)->first();                
+                session()->put('user_id',$emp->id);
+                session()->put('user_name',$emp->name);
+
+                return redirect('employer/profile/'.$emp->id);
+           }
+
+           if($login->type == "labour"){
+                return redirect('labour/index');
+           }
+
+           if($login->type == "admin"){
+                return redirect('admin/index');
+           }
+
+        }
+        
+        
+        
     }
 
     public function SaveRating(Request $request)
@@ -98,6 +139,12 @@ class MainController extends Controller
 
         $rating->save();
 
-        return redirect()->back()->with('success', 'Ratings Added Successfully');
+        return redirect()->back()->with('message', 'Ratings Added Successfully');
+    }
+
+    public function Logout()
+    {
+        session()->flush();
+        return redirect('/');
     }
 }

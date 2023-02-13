@@ -2,12 +2,10 @@
 
 @section('content')
     <div class="container pt-5 my-5">
-        @isset($response)
-            <p class="alert alert-success">{{ $response }}</p>
-        @endisset
         <h1 class="text-center text-bold text-primary">Login Form</h1>
         <section class="mx-auto my-5" style="max-width: 35rem;">
-            <form>
+            <form method="POST" method="{{ url('/login') }}">
+                @csrf
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <input type="email" id="email" name="email" class="form-control" />

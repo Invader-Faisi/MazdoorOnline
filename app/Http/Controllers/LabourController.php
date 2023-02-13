@@ -46,6 +46,6 @@ class LabourController extends Controller
         $bid->job_id = $request['job_id'];
         $bid->labour_id = 2;
         $bid->save();
-        return redirect()->back()->with('success', 'Bid Added Successfully');
+        return redirect()->back()->with('message', 'Bid Added Successfully');
     }
 }

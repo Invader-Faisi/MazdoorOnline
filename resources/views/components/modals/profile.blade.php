@@ -12,7 +12,8 @@
                 <form>
                     <!-- Name -->
                     <div class="form-outline mb-4">
-                        <input type="text" id="name" name="name" class="form-control" value="{{ $profile->name }}" />
+                        <input type="text" id="name" name="name" class="form-control"
+                            value="{{ $profile->name }}" />
                         <label class="form-label" for="name">Full Name</label>
                     </div>
 
@@ -38,8 +39,7 @@
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="password" name="password" class="form-control"
-                            value="{{ $profile->password }}" />
+                        <input type="password" id="password" name="password" class="form-control" value="" />
                         <label class="form-label" for="password">Password</label>
                     </div>
 

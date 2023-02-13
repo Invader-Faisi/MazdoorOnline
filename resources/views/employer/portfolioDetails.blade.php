@@ -3,9 +3,6 @@
 @section('content')
     <section style="background-color: #eee;">
         <div class="container py-5 mt-5">
-            @if (session()->has('success'))
-                <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
             <div class="card col-8 mx-auto">
                 <img src="{{ asset('images/jobs.jpg') }}" height="300px" class="card-img-top" alt="Wild Landscape" />
                 <div class="card-body">
