@@ -13,6 +13,9 @@
                 @endforeach
             </div>
         </div>
+        <div class="pagination col-4 my-2 p-2 mx-auto">
+            {{ $portfolios->links() }}
+        </div>
     </div>
 </section>
 @endsection

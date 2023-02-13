@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column mt-4">
-                    <a href="/employer/portfolio/{{ $Portfolio->id }}" class="btn btn-primary btn-sm">Details</a>
+                    <a href="/employer/labour/{{ $Portfolio->id }}" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>

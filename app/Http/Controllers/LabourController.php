@@ -6,40 +6,41 @@ use App\Models\Biding;
 use App\Models\Job;
 use App\Models\Labour;
 use App\Models\Portfolio;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class LabourController extends Controller
 {
-    public function index($id)
+    public function index()
     {
+        $id = session()->get('user_id');
         $profile = Labour::find($id);
         $data = compact('profile');
         return view('labour.index')->with($data);
     }
 
-    public function jobs()
+    public function GetAllJobs()
     {
-        $jobs = Job::all();
+        $jobs = Job::simplePaginate(3);
         $data = compact('jobs');
         return view('labour.jobs')->with($data);
     }
 
-    public function jobdetails($id)
+    public function GetSingleJob($id)
     {
         $job = Job::find($id);
         $data = compact('job');
         return view('labour.jobDetails')->with($data);
     }
 
-    public function laboursportfolio($id)
+    public function Portfolio()
     {
+        $id = session()->get('user_id');
         $portfolios = Portfolio::all()->where('labour_id', $id);
         $data = compact('portfolios');
         return view('labour.portfolio')->with($data);
     }
 
-    public function addBiding(Request $request)
+    public function AddBiding(Request $request)
     {
         $bid = new Biding();
         $bid->bid = $request['bid'];

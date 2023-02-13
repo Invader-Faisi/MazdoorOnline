@@ -9,29 +9,31 @@ use Illuminate\Http\Request;
 
 class EmployerController extends Controller
 {
-    public function index($id)
+    public function index()
     {
+        $id = session()->get('user_id');
         $profile = Employer::find($id);
         $data = compact('profile');
         return view('employer.index')->with($data);
     }
 
-    public function portfolios()
+    public function GetAllPortfolios()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::simplePaginate(3);
         $data = compact('portfolios');
         return view('employer.portfolios')->with($data);
     }
 
-    public function portfoliodetails($id)
+    public function GetSinglePortfolio($id)
     {
         $portfolio = Portfolio::find($id);
         $data = compact('portfolio');
         return view('employer.portfolioDetails')->with($data);
     }
 
-    public function employersjob($id)
+    public function GetEmployerJobs()
     {
+        $id = session()->get('user_id');
         $jobs = Job::all()->where('employer_id', $id);
         $data = compact('jobs');
         return view('employer.postJob')->with($data);

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AuthenticUser
+class AuthenticLabour
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class AuthenticUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->has('user_type')) {
+        if (session()->has('user_type') && session()->get('user_type') == "labour") {
             return $next($request);
         } else {
+            session()->flush();
             return redirect('/')->with('error', 'Please Login to Proceed');
         }
     }
