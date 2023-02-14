@@ -33,10 +33,10 @@ class MainController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required | email',
+            'email' => 'required | email | unique:employers,email| unique:labours,email',
             'address' => 'required',
             'contact' => 'required',
-            'password' => 'required  | confirmed',
+            'password' => 'required  | confirmed | min:5',
             'password_confirmation' => 'required',
         ]);
 

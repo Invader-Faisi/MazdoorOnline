@@ -9,5 +9,10 @@ class Job extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['category','title', 'location', 'rate', 'description', 'job_rate', 'status', 'employer_id'];
+    protected $fillable = ['category', 'title', 'location', 'rate', 'description', 'job_rate', 'status', 'employer_id'];
+
+    public function GetEmployer()
+    {
+        return $this->hasOne(Employer::class, 'id', 'employer_id');
+    }
 }

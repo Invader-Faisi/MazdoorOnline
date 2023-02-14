@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biding;
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Labour;
 use App\Models\Portfolio;
