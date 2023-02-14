@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
+
+    protected $table = 'jobs';
+    protected $primaryKey = 'id';
+
     protected $fillable = ['category', 'title', 'location', 'rate', 'description', 'job_rate', 'status', 'employer_id'];
 
     public function GetEmployer()
     {
-        return $this->hasOne(Employer::class, 'id', 'employer_id');
+        return $this->hasOne(Employer::class, 'id');
     }
 }

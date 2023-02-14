@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Biding;
-use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Labour;
-use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class LabourController extends Controller
 {
+
+    private function GetLabourId()
+    {
+        return session()->get('user_id');
+    }
+
     public function index()
     {
-        $id = session()->get('user_id');
+        $id = $this->GetLabourId();
         $profile = Labour::find($id);
         $data = compact('profile');
         return view('labour.index')->with($data);
@@ -33,10 +37,11 @@ class LabourController extends Controller
         return view('labour.jobDetails')->with($data);
     }
 
-    public function Portfolio()
+    public function GetLabourPortfolios()
     {
-        $id = session()->get('user_id');
-        $portfolios = Portfolio::all()->where('labour_id', $id);
+        $id = $this->GetLabourId();
+        $labour = Labour::find($id);
+        $portfolios = $labour->GetPortfolios;
         $data = compact('portfolios');
         return view('labour.portfolio')->with($data);
     }

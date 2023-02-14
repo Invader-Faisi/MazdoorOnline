@@ -26,7 +26,7 @@ class MainController extends Controller
     {
         $user = $type;
         $data = compact('user');
-        return view('components/forms/register')->with($data);
+        return view('forms.register')->with($data);
     }
 
     public function SaveUser(Request $request)
@@ -72,7 +72,7 @@ class MainController extends Controller
 
     public function Login()
     {
-        return view('components/forms/login');
+        return view('forms.login');
     }
 
     public function AuthenticateUser(Request $request)

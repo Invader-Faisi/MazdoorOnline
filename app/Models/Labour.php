@@ -9,5 +9,14 @@ class Labour extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    protected $table = 'labours';
+    protected $primaryKey = 'id';
+
     protected $fillable = ['name', 'email', 'address', 'contact', 'password'];
+
+    public function GetPortfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
 }

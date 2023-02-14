@@ -1,40 +1,85 @@
 @extends('layouts.main')
 
 @section('content')
-    <section style="background-color: #eee;">
-        <div class="container py-5 mt-5">
-            <div class="card col-8 mx-auto">
-                <img src="{{ asset('images/jobs.jpg') }}" height="300px" class="card-img-top" alt="Wild Landscape" />
-                <div class="card-body">
-                    <h5 class="card-title">
-                        Labour :&nbsp;<span class="text-success">{{ $portfolio->name }}</span>
-                        <br />
-                        Portfolio Title :&nbsp;<span class="text-danger">{{ $portfolio->name }}</span>
-                    </h5>
-                    <hr>
-                    <p class="card-text">
-                        <b>Hourly Rate :</b>&nbsp;
-                        <span class="badge badge-success rounded-pill d-inline">
-                            Rs : {{ $portfolio->hourly_rate }}
-                        </span>&nbsp;
-                        <b>Skills:</b>&nbsp;
-                        <x-cards.skills :skills="$portfolio->skills" />
-                        <b>Experience:</b>&nbsp;
-                        <span class="badge badge-danger rounded-pill d-inline">
-                            {{ $portfolio->experience }} Years
-                        </span>&nbsp;
-                    </p>
-                    <button class="btn btn-primary btn-sm" data-mdb-toggle="modal" data-mdb-target="#rateModal">
-                        Rate Labour</button>
-                    <button class="btn btn-success btn-sm"> Assign Job</button>
-
+<section style="background-color: #eee;">
+    <div class="container py-5 mt-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="my-1 text-primary">Labour</h5>
+                        <img src="{{ asset('images/user.jpg') }}" alt="avatar" class="rounded-circle img-fluid"
+                            style="width: 150px;">
+                        <h5 class="my-3">{{ $portfolio->GetLabour->name }}</h5>
+                        <p class="text-muted mb-1">{{ $portfolio->GetLabour->email }}</p>
+                        <p class="text-muted mb-4">{{ $portfolio->GetLabour->contact }}</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                                data-mdb-target="#rateModal">Rate Labour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <h5 class="text-primary mb-0">Portfolio Details</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Title</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ $portfolio->name }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Experience</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ $portfolio->experience }}&nbsp;Years</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Hourly Rate</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">Rs :&nbsp;{{ $portfolio->hourly_rate }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Skills</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <x-cards.skills :skills="$portfolio->skills" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                                    data-mdb-target="#bidModal">Assign Job</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    @php
-        $rating_by = 'Employer';
-        $rate = 'Labour';
-    @endphp
-    <x-modals.rating :ratedid="$portfolio->labour_id" :rating_by="$rating_by" :rate="$rate" />
+    </div>
+</section>
+@php
+$rating_by = 'Employer';
+$rate = 'Labour';
+@endphp
+<x-modals.rating :ratedid="$portfolio->labour_id" :rating_by="$rating_by" :rate="$rate" />
 @endsection

@@ -2,29 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
 use App\Models\Employer;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
 {
+    private function GetEmployerId()
+    {
+        return session()->get('user_id');
+    }
+
     public function index()
     {
-        $id = session()->get('user_id');
+        $id = $this->GetEmployerId();
         $profile = Employer::find($id);
         $data = compact('profile');
         return view('employer.index')->with($data);
     }
 
-    public function GetAllPortfolios()
+    public function GetAllLabours()
     {
         $portfolios = Portfolio::simplePaginate(3);
         $data = compact('portfolios');
         return view('employer.portfolios')->with($data);
     }
 
-    public function GetSinglePortfolio($id)
+    public function GetSingleLabour($id)
     {
         $portfolio = Portfolio::find($id);
         $data = compact('portfolio');
@@ -33,11 +37,9 @@ class EmployerController extends Controller
 
     public function GetEmployerJobs()
     {
-        $id = session()->get('user_id');
-        $jobs = Employer::find($id);
-        //$jobs = Job::all()->where('employer_id', $id);
-        $res = $jobs->GetJobs;
-        dd($res);
+        $id = $this->GetEmployerId();
+        $emp = Employer::find($id);
+        $jobs = $emp->GetJobs;
         $data = compact('jobs');
         return view('employer.postJob')->with($data);
     }
