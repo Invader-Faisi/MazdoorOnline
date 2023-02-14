@@ -10,4 +10,9 @@ class Employer extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['name', 'email', 'address', 'contact', 'password'];
+
+    public function GetJobs()
+    {
+        return $this->hasMany(Job::class, 'id', 'employer_id');
+    }
 }

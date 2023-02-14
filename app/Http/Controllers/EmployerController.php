@@ -34,7 +34,10 @@ class EmployerController extends Controller
     public function GetEmployerJobs()
     {
         $id = session()->get('user_id');
-        $jobs = Job::all()->where('employer_id', $id);
+        $jobs = Employer::find($id);
+        //$jobs = Job::all()->where('employer_id', $id);
+        $res = $jobs->GetJobs;
+        dd($res);
         $data = compact('jobs');
         return view('employer.postJob')->with($data);
     }
