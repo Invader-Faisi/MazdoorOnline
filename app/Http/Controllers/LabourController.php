@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Biding;
 use App\Models\Job;
 use App\Models\Labour;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class LabourController extends Controller
@@ -44,6 +45,31 @@ class LabourController extends Controller
         $portfolios = $labour->GetPortfolios;
         $data = compact('portfolios');
         return view('labour.portfolio')->with($data);
+    }
+
+    public function CreateLabourPortfolio(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'experience' => 'required',
+            'skills' => 'required',
+            'hourly_rate' => 'required  | min:1',
+        ]);
+        $portfolio = new Portfolio();
+
+        $portfolio->name = $request['name'];
+        $portfolio->experience = $request['experience'];
+        $portfolio->skills = $request['skills'];
+        $portfolio->hourly_rate = $request['hourly_rate'];
+        $portfolio->labour_id = $this->GetLabourId();
+
+        $result = $portfolio->save();
+
+        if ($result) {
+            return redirect()->back()->with('message', 'Portfolio Added Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     public function AddBiding(Request $request)

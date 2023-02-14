@@ -27,9 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 //Route::get('/', [MainController::class, 'index'])->middleware('auth');
 
-// Rating for both of Labour and Employer
-Route::post('/rating', [MainController::class, 'SaveRating']);
-
 // Route for getting registeration form
 Route::get('/register/{type}', [MainController::class, 'GetRegistrationForm']);
 
@@ -41,6 +38,12 @@ Route::get('/login', [MainController::class, 'Login']);
 
 // Route for logging in
 Route::post('/login', [MainController::class, 'AuthenticateUser']);
+
+// Route for both of labour and Employer profile updating 
+Route::post('/profile', [MainController::class, 'UpdateProfile'])->middleware('auth_common');
+
+// Rating for both of Labour and Employer rating
+Route::post('/rating', [MainController::class, 'SaveRating'])->middleware('auth_common');
 
 // Route for logout
 Route::get('/logout', [MainController::class, 'Logout']);
@@ -63,6 +66,9 @@ Route::get('/labour/job/{id}', [LabourController::class, 'GetSingleJob'])->middl
 
 // Getting portfolios of labour
 Route::get('/labour/portfolio', [LabourController::class, 'GetLabourPortfolios'])->middleware('auth_labour');
+
+// Creating portfolio of labour
+Route::post('/labour/portfolio', [LabourController::class, 'CreateLabourPortfolio'])->middleware('auth_labour');
 
 // Add biding by labour
 Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('auth_labour');

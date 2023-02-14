@@ -5,7 +5,8 @@
     <div class="container pt-5 my-5">
         <h3 class="text-center text-bold text-primary"><u>Post your Portfolio</u></h3>
         <section class="mx-auto pt-5" style="max-width: 35rem;">
-            <form>
+            <form method="POST" action="{{url('/labour/portfolio')}}">
+                @csrf
                 <div class="row">
                     <div class="col">
                         <!-- Name input -->
@@ -13,13 +14,23 @@
                             <input type="text" id="name" name="name" class="form-control" />
                             <label class="form-label" for="name">Portfolio Title</label>
                         </div>
+                        <p class="text-danger">
+                            @error('name')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                     <div class="col">
                         <!-- Experience input -->
                         <div class="form-outline">
-                            <input type="email" id="experience" name="experience" class="form-control" />
-                            <label class="form-label" for="experience">Experience</label>
+                            <input type="number" id="experience" name="experience" min="1" class="form-control" />
+                            <label class="form-label" for="experience">Experience (Years)</label>
                         </div>
+                        <p class="text-danger">
+                            @error('experience')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                 </div>
 
@@ -32,6 +43,11 @@
                             <input type="text" id="skills" name="skills" class="form-control" />
                             <label class="form-label" for="skills">Enter Skills [ Hypen(-) separated ]</label>
                         </div>
+                        <p class="text-danger">
+                            @error('skills')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                     <div class="col">
                         <!-- Hourly Rate input -->
@@ -39,6 +55,11 @@
                             <input type="text" id="hourly_rate" name="hourly_rate" class="form-control" />
                             <label class="form-label" for="hourly_rate">Hourly Rate</label>
                         </div>
+                        <p class="text-danger">
+                            @error('hourly_rate')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                 </div>
 

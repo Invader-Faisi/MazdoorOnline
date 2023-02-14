@@ -112,6 +112,34 @@ class MainController extends Controller
         }
     }
 
+    public function UpdateProfile(Request $request)
+    {
+        $id = session()->get('user_id');
+        $type = session()->get('user_type');
+        $user = null;
+
+        if ($type == "labour") {
+            $user = Labour::find($id);
+        } elseif ($type == "employer") {
+            $user = Employer::find($id);
+        }
+
+        if ($user != null) {
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->address = $request['address'];
+            $user->contact = $request['contact'];
+            $user->password = md5($request['password_confirmation']);
+            $result = $user->save();
+
+            if ($result) {
+                return redirect()->back()->with('message', 'Profile Updated Successfully');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong');
+            }
+        }
+    }
+
     public function SaveRating(Request $request)
     {
         $rating = new Rating();
