@@ -22,13 +22,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/employer/jobs')}}">Job</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/employer/bids')}}">Bids</a>
+            </li>
             @endif
             @if (session()->get('user_type') == "labour")
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/labour/jobs')}}">Job's</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/labour/portfolio')}}">Portfolio</a>
+                <a class="nav-link" href="{{url('/labour/portfolios')}}">Portfolio</a>
             </li>
             @endif
             @endif

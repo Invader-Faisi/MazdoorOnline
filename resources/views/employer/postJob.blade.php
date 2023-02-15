@@ -5,33 +5,51 @@
     <div class="container pt-5 my-5">
         <h4 class="text-center text-bold text-primary"><u>Post your Job</u></h4>
         <section class="mx-auto pt-5" style="max-width: 35rem;">
-            <form>
+            <form method="POST" action="{{url('/employer/job')}}">
+                @csrf
                 <div class="row align-items-center">
                     <div class="col">
                         <!-- Category input -->
                         <label class="form-check-label" for="category">Category&nbsp;&nbsp;</label>
                         <select class="select col-6" id="category" name="category">
-                            <option value=""></option>
+                            <option value="{{old('category')}}"></option>
                             <option value="Individual">Individual</option>
                             <option value="Corporate">Corporate</option>
                         </select>
+                        <p class="text-danger">
+                            @error('category')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                     <div class="col">
                         <!-- Work Category input -->
                         <label class="form-check-label" for="title">Title&nbsp;&nbsp;</label>
                         <select class="select col-8" id="title" name="title">
-                            <option value=""></option>
-                            <option value="Individual">Individual</option>
-                            <option value="Corporate">Corporate</option>
+                            <option value="{{old('title')}}"></option>
+                            <option value="Driver">Driver</option>
+                            <option value="Carpenter">Carpenter</option>
+                            <option value="Contractor">Contractor</option>
                         </select>
+                        <p class="text-danger">
+                            @error('title')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
 
                     <div class="col">
                         <!-- Location input -->
                         <div class="form-outline">
-                            <input type="text" id="location" name="location" class="form-control" />
+                            <input type="text" id="location" name="location" class="form-control"
+                                value="{{old('location')}}" />
                             <label class="form-label" for="location">Location</label>
                         </div>
+                        <p class="text-danger">
+                            @error('location')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                 </div>
 
@@ -42,17 +60,28 @@
                         <!-- Offer input -->
                         <label class="form-check-label" for="offer">Offer&nbsp;&nbsp;</label>
                         <select class="select col-8" id="offer" name="rate">
-                            <option value=""></option>
+                            <option value="{{old('rate')}}"></option>
                             <option value="Fixed">Fixed</option>
                             <option value="Bid">Bid</option>
                         </select>
+                        <p class="text-danger">
+                            @error('rate')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                     <div class="col">
                         <!-- Job Rate input -->
                         <div class="form-outline">
-                            <input type="number" id="job_rate" name="job_rate" class="form-control" min="0" />
-                            <label class="form-label" for="job_rate">Job Rate</label>
+                            <input type="number" id="job_rate" name="job_rate" class="form-control" min="0"
+                                value="{{old('job_rate')}}" />
+                            <label class="form-label" for="job_rate">Job Rate (Rs)</label>
                         </div>
+                        <p class="text-danger">
+                            @error('job_rate')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                 </div>
 
@@ -62,9 +91,15 @@
                     <div class="col">
                         <!-- Description input -->
                         <div class="form-outline">
-                            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="4"
+                                value="{{old('description')}}"></textarea>
                             <label class="form-label" for="description">Description</label>
                         </div>
+                        <p class="text-danger">
+                            @error('description')
+                            {{ $message }}
+                            @enderror
+                        </p>
                     </div>
                 </div>
 
@@ -85,8 +120,8 @@
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
-                    <th>Category</th>
-                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Job</th>
                     <th>Location</th>
                     <th>Offer</th>
                     <th>Rate</th>

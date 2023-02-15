@@ -47,7 +47,7 @@ class LabourController extends Controller
         return view('labour.portfolio')->with($data);
     }
 
-    public function CreateLabourPortfolio(Request $request)
+    public function CreatePortfolio(Request $request)
     {
         $request->validate([
             'name' => 'required',

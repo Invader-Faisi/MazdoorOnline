@@ -96,18 +96,18 @@ class MainController extends Controller
                 session()->put('user_id', $emp->id);
                 session()->put('user_name', $emp->name);
 
-                return redirect('employer/profile');
+                return redirect('employer/profile')->with('message', 'Welcome ' . $emp->name);
             }
 
             if ($login->type == "labour") {
                 $labour = Labour::select('id', 'name')->where('email', $login->email)->first();
                 session()->put('user_id', $labour->id);
                 session()->put('user_name', $labour->name);
-                return redirect('labour/profile');
+                return redirect('labour/profile')->with('message', 'Welcome ' . $labour->name);
             }
 
             if ($login->type == "admin") {
-                return redirect('admin/index');
+                return redirect('admin/index')->with('message', 'Welcome Admin');
             }
         }
     }
