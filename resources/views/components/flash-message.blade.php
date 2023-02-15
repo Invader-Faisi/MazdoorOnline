@@ -1,10 +1,15 @@
 @if (session()->has('message'))
-<div class="container col-4 text-white bg-success mx-auto py-2 fixed-top text-center opacity-50">
-    {{ session('message') }}
-</div>
+<script src="{{asset('/lib/js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{asset('lib/js/toastr.min.js')}}"></script>
+<script type="text/javascript">
+toastr.success('{{ session("message") }}');
+</script>
+
 @endif
 @if (session()->has('error'))
-<div class="container col-4 text-white bg-danger mx-auto py-2 fixed-top text-center opacity-50">
-    {{ session('error') }}
-</div>
+<script src="{{asset('/lib/js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{asset('lib/js/toastr.min.js')}}"></script>
+<script type="text/javascript">
+toastr.error('{{ session("error") }}');
+</script>
 @endif
