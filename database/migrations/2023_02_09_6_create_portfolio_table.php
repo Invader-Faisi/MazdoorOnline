@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('experience');
             $table->string('skills');
             $table->integer('hourly_rate');
-            $table->enum('status', ['Pending', 'Active'])->default('Pending');
+            $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->foreignId('labour_id')->constrained('labours');
         });
     }

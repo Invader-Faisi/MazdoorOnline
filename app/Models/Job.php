@@ -18,6 +18,11 @@ class Job extends Model
 
     public function GetEmployer()
     {
-        return $this->hasOne(Employer::class, 'id');
+        return $this->hasOne(Employer::class, 'id', 'employer_id');
+    }
+
+    public function GetBidings()
+    {
+        return $this->hasMany(Biding::class, 'job_id');
     }
 }

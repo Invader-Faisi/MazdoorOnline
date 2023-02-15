@@ -14,7 +14,7 @@
                     <!-- Rating input -->
                     <div class="form-outline mb-4">
                         <input type="hidden" name="job_id" value="{{$jobid}}" />
-                        <input type="number" id="bid" name="bid" class="form-control" min="0" />
+                        <input type="number" id="bid" name="bid" class="form-control" min="0" required />
                         <label class="form-label" for="bid">Add your Bid</label>
                     </div>
                     <div class="modal-footer">

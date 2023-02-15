@@ -14,7 +14,7 @@
                     <label class="form-label"> Rate Out of 5 </label>
                     <!-- Rating input -->
                     <div class="form-outline mb-4">
-                        <input type="number" id="ratings" name="ratings" class="form-control" max="5" min="0" />
+                        <input type="number" id="ratings" name="ratings" class="form-control" max="5" min="0" required />
                         <label class="form-label" for="ratings">{{$rate}} Rating</label>
                         <input type="hidden" name="rating_by" value="{{$rating_by}}">
                         <input type="hidden" name="ratedid" value="{{$ratedid}}">

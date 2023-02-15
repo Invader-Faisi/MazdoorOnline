@@ -96,4 +96,4 @@ Route::get('/employer/jobs', [EmployerController::class, 'GetEmployerJobs'])->mi
 Route::post('/employer/job', [EmployerController::class, 'CreateJob'])->middleware('auth_employer');
 
 // Getting bids from labour on posted job
-Route::get('/employer/bids', [EmployerController::class, 'GetBidings'])->middleware('auth_employer');
+Route::get('/employer/bids', [EmployerController::class, 'GetBiding'])->middleware('auth_employer');

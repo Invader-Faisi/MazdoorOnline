@@ -77,7 +77,7 @@ class LabourController extends Controller
         $bid = new Biding();
         $bid->bid = $request['bid'];
         $bid->job_id = $request['job_id'];
-        $bid->labour_id = 2;
+        $bid->labour_id = session()->get('user_id');
         $bid->save();
         return redirect()->back()->with('message', 'Bid Added Successfully');
     }

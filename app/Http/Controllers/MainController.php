@@ -145,18 +145,15 @@ class MainController extends Controller
         $rating = new Rating();
         $rating->ratings = $request['ratings'];
         $rating->rating_by = $request['rating_by'];
-        /*
-        if (session('user_type') == "Labour") {
+
+        if (session()->get('user_type') == "labour") {
             $rating->employer_id = $request['ratedid'];
-            $rating->labour_id = session('user_id');
+            $rating->labour_id = session()->get('user_id');
         }
-        if (session('user_type') == "Employer") {
+        if (session()->get('user_type')  == "employer") {
             $rating->labour_id = $request['ratedid'];
-            $rating->employer_id = session('user_id');
+            $rating->employer_id = session()->get('user_id');
         }
-        */
-        $rating->employer_id = $request['ratedid'];
-        $rating->labour_id = 3;
 
         $rating->save();
 

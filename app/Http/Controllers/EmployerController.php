@@ -72,8 +72,12 @@ class EmployerController extends Controller
         }
     }
 
-    public function GetBidings()
+    public function GetBiding()
     {
-        return view('employer.bidings');
+        $id = $this->GetEmployerId();
+        $emp = Employer::find($id);
+        $jobs = $emp->GetJobs;
+        $data = compact('jobs');
+        return view('employer.bidings')->with($data);
     }
 }
