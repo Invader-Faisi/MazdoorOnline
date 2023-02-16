@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assigned_Job;
 use App\Models\Employer;
 use App\Models\Portfolio;
 use App\Models\Job;
@@ -22,10 +23,10 @@ class EmployerController extends Controller
         return view('employer.index')->with($data);
     }
 
-    public function GetLabourPortfolio($id,$jobid = null)
+    public function GetLabourPortfolio($id, $jobid = null, $assigned = false)
     {
         $portfolio = Portfolio::find($id);
-        $data = compact('portfolio','jobid');
+        $data = compact('portfolio', 'jobid', 'assigned');
         return view('employer.portfolioDetails')->with($data);
     }
 
@@ -65,17 +66,22 @@ class EmployerController extends Controller
         }
     }
 
-    public function AssignJob(Request $request )
+    public function AssignJob(Request $request)
     {
-        if($request['job_id'] && $request['labour_id'] != null)
-        {
+        if ($request['job_id'] && $request['labour_id'] != null) {
             $job = Job::find($request['job_id']);
             $job->status = "Assigned";
-            $job->save();
-
-            // start from here
+            $result = $job->save();
+            if ($result) {
+                $assignment = new Assigned_Job();
+                $assignment->job_id = $request['job_id'];
+                $assignment->labour_id = $request['labour_id'];
+                $assignment->save();
+                return redirect('employer/assigned/jobs')->with('message', 'Job assigned successfully');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong!!');
+            }
         }
-
     }
 
     public function GetBiding()
@@ -85,5 +91,14 @@ class EmployerController extends Controller
         $jobs = $emp->GetJobs;
         $data = compact('jobs');
         return view('employer.bidings')->with($data);
+    }
+
+    public function GetAssignedJobs()
+    {
+        $id = $this->GetEmployerId();
+        $emp = Employer::find($id);
+        $jobs = $emp->GetJobs;
+        $data = compact('jobs');
+        return view('employer.assignedJobs')->with($data);
     }
 }

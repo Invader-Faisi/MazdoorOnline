@@ -39,8 +39,8 @@
         <x-footer />
     </footer>
 
-    <script type="text/javascript" src="{{asset('/lib/js/mdb.min.js')}}"></script>
 
+    <script type="text/javascript" src="{{asset('/lib/js/mdb.min.js')}}"></script>
 
 </body>
 

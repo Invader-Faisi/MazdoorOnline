@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\LabourController;
 use App\Http\Controllers\MainController;
+use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,7 +85,7 @@ Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('
 Route::get('/employer/profile', [EmployerController::class, 'index'])->middleware('auth_employer');
 
 // Displaying single portfolio details for Employer
-Route::get('/employer/labour/{id}/{jobid?}', [EmployerController::class, 'GetLabourPortfolio'])->middleware('auth_common');
+Route::get('/employer/labour/{id}/{jobid?}/', [EmployerController::class, 'GetLabourPortfolio'])->middleware('auth_common');
 
 // Getting jobs posted by employer
 Route::get('/employer/jobs', [EmployerController::class, 'GetEmployerJobs'])->middleware('auth_employer');
@@ -97,3 +98,6 @@ Route::post('/employer/job/assign', [EmployerController::class, 'AssignJob'])->m
 
 // Getting bids from labour on posted job
 Route::get('/employer/bids', [EmployerController::class, 'GetBiding'])->middleware('auth_employer');
+
+// Getting assigned jobs
+Route::get('employer/assigned/jobs', [EmployerController::class, 'GetAssignedJobs'])->middleware('auth_employer');

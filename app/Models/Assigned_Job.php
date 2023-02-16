@@ -13,5 +13,9 @@ class Assigned_Job extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['status', 'job_id', 'labour_id'];
-    
+
+    public function GetLabour()
+    {
+        return $this->hasOne(Labour::class, 'id', 'labour_id');
+    }
 }
