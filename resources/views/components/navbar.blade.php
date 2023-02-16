@@ -17,10 +17,7 @@
             @if (session()->has('user_type'))
                 @if (session()->get('user_type') == 'employer')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/employer/labours') }}">Labour's</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/employer/jobs') }}">Job</a>
+                        <a class="nav-link" href="{{ url('/employer/jobs') }}">Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/employer/bids') }}">Bids</a>
@@ -28,7 +25,7 @@
                 @endif
                 @if (session()->get('user_type') == 'labour')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/labour/jobs') }}">Job's</a>
+                        <a class="nav-link" href="{{ url('/labour/jobs') }}">Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/labour/portfolios') }}">Portfolio</a>

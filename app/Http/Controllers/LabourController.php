@@ -26,7 +26,7 @@ class LabourController extends Controller
 
     public function GetAllJobs()
     {
-        $jobs = Job::simplePaginate(3);
+        $jobs = Job::where('status','Active')->paginate(3);
         $data = compact('jobs');
         return view('labour.jobs')->with($data);
     }

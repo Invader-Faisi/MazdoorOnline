@@ -15,10 +15,11 @@ class MainController extends Controller
 {
     public function index()
     {
-        $jobs = Job::simplePaginate(3);
-        $portfolios = Portfolio::simplePaginate(3);
+        $jobs = Job::where('status','Active')->paginate(3);
+        $portfolios = Portfolio::where('status','Approved')->paginate(3);
         $data['jobs'] = $jobs;
         $data['portfolios'] = $portfolios;
+
         return view('index')->with($data);
     }
 
@@ -109,6 +110,9 @@ class MainController extends Controller
             if ($login->type == "admin") {
                 return redirect('admin/index')->with('message', 'Welcome Admin');
             }
+        }else
+        {
+            return redirect()->back()->with('error','Email or Password not Valid');
         }
     }
 

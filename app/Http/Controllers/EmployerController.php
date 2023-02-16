@@ -22,17 +22,10 @@ class EmployerController extends Controller
         return view('employer.index')->with($data);
     }
 
-    public function GetAllLabours()
-    {
-        $portfolios = Portfolio::simplePaginate(3);
-        $data = compact('portfolios');
-        return view('employer.portfolios')->with($data);
-    }
-
-    public function GetSingleLabour($id)
+    public function GetLabourPortfolio($id,$jobid = null)
     {
         $portfolio = Portfolio::find($id);
-        $data = compact('portfolio');
+        $data = compact('portfolio','jobid');
         return view('employer.portfolioDetails')->with($data);
     }
 
@@ -70,6 +63,19 @@ class EmployerController extends Controller
         } else {
             return redirect()->back()->with('error', 'Something went wrong');
         }
+    }
+
+    public function AssignJob(Request $request )
+    {
+        if($request['job_id'] && $request['labour_id'] != null)
+        {
+            $job = Job::find($request['job_id']);
+            $job->status = "Assigned";
+            $job->save();
+
+            // start from here
+        }
+
     }
 
     public function GetBiding()
