@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('assigned_jobs', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['Pending', 'Completed',])->default('Pending');
+            $table->enum('status', ['Pending', 'Completed', 'Rated'])->default('Pending');
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('labour_id')->constrained('labours');
         });

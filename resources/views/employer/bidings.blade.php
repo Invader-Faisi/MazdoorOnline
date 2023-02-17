@@ -2,7 +2,7 @@
 
 @section('content')
     <section style="background-color: #eee;">
-        <div class="container py-5 mt-5">
+        <div class="container-fluid py-5 mt-5">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
