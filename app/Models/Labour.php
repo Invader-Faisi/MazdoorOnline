@@ -24,4 +24,9 @@ class Labour extends Model
     {
         return $this->hasOne(Biding::class, 'labour_id');
     }
+
+    public function GetMyJobs()
+    {
+        return $this->hasMany(Assigned_Job::class, 'labour_id');
+    }
 }

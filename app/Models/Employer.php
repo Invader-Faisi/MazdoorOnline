@@ -19,4 +19,9 @@ class Employer extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function GetRating()
+    {
+        return $this->hasOne(Rating::class, 'employer_id');
+    }
 }

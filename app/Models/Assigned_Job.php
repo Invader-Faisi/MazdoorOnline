@@ -18,4 +18,14 @@ class Assigned_Job extends Model
     {
         return $this->hasOne(Labour::class, 'id', 'labour_id');
     }
+
+    public function GetRating()
+    {
+        return $this->hasOne(Rating::class, 'assigned_job_id');
+    }
+
+    public function GetJob()
+    {
+        return $this->hasOne(Job::class, 'id', 'job_id');
+    }
 }

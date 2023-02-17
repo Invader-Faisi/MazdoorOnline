@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assigned_Job;
 use App\Models\Biding;
 use App\Models\Job;
 use App\Models\Labour;
@@ -82,5 +83,18 @@ class LabourController extends Controller
         $bid->labour_id = session()->get('user_id');
         $bid->save();
         return redirect()->back()->with('message', 'Bid Added Successfully');
+    }
+
+    public function GetAssignedJobs()
+    {
+        $id = $this->GetLabourId();
+        $labour = labour::find($id);
+        $jobs = $labour->GetMyJobs;
+
+        // foreach ($jobs as $job) {
+        //     dd($job->GetJob->GetEmployer->GetRating);
+        // }
+        $data = compact('jobs');
+        return view('labour.assignedJobs')->with($data);
     }
 }

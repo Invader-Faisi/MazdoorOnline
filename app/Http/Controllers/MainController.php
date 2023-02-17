@@ -15,8 +15,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        $jobs = Job::where('status','Active')->paginate(3);
-        $portfolios = Portfolio::where('status','Approved')->paginate(3);
+        $jobs = Job::where('status', 'Active')->paginate(3);
+        $portfolios = Portfolio::where('status', 'Approved')->paginate(3);
         $data['jobs'] = $jobs;
         $data['portfolios'] = $portfolios;
 
@@ -110,9 +110,8 @@ class MainController extends Controller
             if ($login->type == "admin") {
                 return redirect('admin/index')->with('message', 'Welcome Admin');
             }
-        }else
-        {
-            return redirect()->back()->with('error','Email or Password not Valid');
+        } else {
+            return redirect()->back()->with('error', 'Email or Password not Valid');
         }
     }
 
@@ -149,6 +148,7 @@ class MainController extends Controller
         $rating = new Rating();
         $rating->ratings = $request['ratings'];
         $rating->rating_by = $request['rating_by'];
+        $rating->assigned_job_id = $request['assigned_job_id'];
 
         if (session()->get('user_type') == "labour") {
             $rating->employer_id = $request['ratedid'];

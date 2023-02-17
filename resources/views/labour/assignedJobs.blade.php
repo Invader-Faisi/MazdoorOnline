@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @php
-$rating_by = 'Employer';
-$rate = 'Labour';
+$rating_by = 'Labour';
+$rate = 'Employer';
 @endphp
 @section('content')
 <section style="background-color: #eee;">
@@ -18,9 +18,9 @@ $rate = 'Labour';
                                             <i class="fas fa-university text-danger"></i>
                                         </th>
                                         <th scope="col" class="fw-bold">Job</th>
-                                        <th scope="col" class="fw-bold">Description</th>
-                                        <th scope="col" class="fw-bold">Job Holder</th>
-                                        <th scope="col" class="fw-bold">Placed Bid</th>
+                                        <th scope="col" class="fw-bold">Location</th>
+                                        <th scope="col" class="fw-bold">Employer</th>
+                                        <th scope="col" class="fw-bold">Approved Bid</th>
                                         <th scope="col" class="fw-bold">Ratings</th>
                                         <th scope="col" class="fw-bold">Status</th>
                                         <th scope="col" class="fw-bold">Action</th>
@@ -28,33 +28,30 @@ $rate = 'Labour';
                                 </thead>
                                 <tbody>
                                     @foreach ($jobs as $job)
-                                    @if ($job->status == 'Assigned')
                                     <tr>
                                         <th scope="row">
                                             <i class="fas fa-headset text-info"></i>
                                         </th>
-                                        <td>{{ $job->title }}</td>
-                                        <td>{{ $job->description }}</td>
-                                        <td>{{ $job->GetAssignedLabour->GetLabour->name }}</td>
-                                        <td>{{ $job->GetBid->bid }}</td>
+                                        <td>{{ $job->GetJob->title }}</td>
+                                        <td>{{ $job->GetJob->location }}</td>
+                                        <td>{{ $job->GetJob->GetEmployer->name }}</td>
+                                        <td>{{ $job->GetJob->GetBid->bid }}</td>
                                         <td>
-                                            @if ($job->GetAssignedLabour->GetRating == null)
+                                            @if ($job->GetJob->GetEmployer->GetRating->rating_by != 'Labour')
                                             Not Rated Yet
                                             @else
                                             <div class="text-danger me-2" style="font-size:12px">
-                                                @for ($i = 0; $i < $job->GetAssignedLabour->GetRating->ratings; $i++)
+                                                @for ($i = 0; $i < $job->GetJob->GetEmployer->GetRating->ratings; $i++)
                                                     <i class="fa fa-star"></i>
                                                     @endfor
                                             </div>
                                             @endif
                                         </td>
-                                        <td>{{ $job->GetAssignedLabour->status }}</td>
+                                        <td>{{ $job->GetJob->GetAssignedLabour->status }}</td>
                                         <td>
-                                            @if ($job->GetAssignedLabour->status == 'Completed')
-                                            @if ($job->GetAssignedLabour->GetRating == null)
-                                            <a type="button" class="btn btn-success btn-sm px-3 rateModalBtn"
-                                                data-id="{{ $job->GetAssignedLabour->labour_id }}"
-                                                data-jobid="{{ $job->GetAssignedLabour->job_id }}">
+                                            @if ($job->GetJob->GetAssignedLabour->status == 'Completed')
+                                            @if ($job->GetJob->GetEmployer->GetRating->rating_by != 'Labour')
+                                            <a type="button" class="btn btn-success btn-sm px-3 rateModalBtn" data-id="{{ $job->GetJob->employer_id }}" data-jobid="{{ $job->GetJob->id }}">
                                                 <i class="fas fa-check text-white"></i>
                                             </a>
                                             @else
@@ -70,7 +67,6 @@ $rate = 'Labour';
 
                                         </td>
                                     </tr>
-                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -86,13 +82,13 @@ $rate = 'Labour';
 
 <script type="text/javascript" src="{{ asset('/lib/js/jquery-3.4.1.min.js') }}"></script>
 <script>
-$(document).ready(function() {
-    $('.rateModalBtn').click(function(e) {
-        var ratedid = $(this).data('id');
-        var jobid = $(this).data('jobid');
-        $('#ratedid').val(ratedid);
-        $('#assigned_job_id').val(jobid);
-        $('#ratingModal').modal('show');
+    $(document).ready(function() {
+        $('.rateModalBtn').click(function(e) {
+            var ratedid = $(this).data('id');
+            var jobid = $(this).data('jobid');
+            $('#ratedid').val(ratedid);
+            $('#assigned_job_id').val(jobid);
+            $('#ratingModal').modal('show');
+        });
     });
-});
 </script>

@@ -17,8 +17,9 @@
                         <input type="number" id="ratings" name="ratings" class="form-control" max="5" min="0"
                             required />
                         <label class="form-label" for="ratings">{{$rate}} Rating</label>
-                        <input type="hidden" name="rating_by" value="{{$rating_by}}">
-                        <input type="hidden" name="ratedid" id="ratedid" value="">
+                        <input type="text" name="rating_by" value="{{$rating_by}}">
+                        <input type="text" name="assigned_job_id" id="assigned_job_id" value="">
+                        <input type="text" name="ratedid" id="ratedid" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>

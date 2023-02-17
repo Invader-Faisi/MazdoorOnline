@@ -33,6 +33,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/labour/portfolios') }}">Portfolio</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/labour/assigned/jobs') }}">My Jobs</a>
+            </li>
             @endif
             @endif
         </ul>

@@ -74,6 +74,8 @@ Route::post('/labour/portfolio', [LabourController::class, 'CreatePortfolio'])->
 // Add biding by labour
 Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('auth_labour');
 
+// Getting assigned jobs
+Route::get('labour/assigned/jobs', [LabourController::class, 'GetAssignedJobs'])->middleware('auth_labour');
 
 /**
  * 
