@@ -19,9 +19,9 @@ class Assigned_Job extends Model
         return $this->hasOne(Labour::class, 'id', 'labour_id');
     }
 
-    public function GetRating()
+    public function GetRatings()
     {
-        return $this->hasOne(Rating::class, 'assigned_job_id');
+        return $this->hasMany(Rating::class, 'assigned_job_id');
     }
 
     public function GetJob()

@@ -90,11 +90,30 @@ class LabourController extends Controller
         $id = $this->GetLabourId();
         $labour = labour::find($id);
         $jobs = $labour->GetMyJobs;
-
-        // foreach ($jobs as $job) {
-        //     dd($job->GetJob->GetEmployer->GetRating);
-        // }
         $data = compact('jobs');
         return view('labour.assignedJobs')->with($data);
+    }
+
+    public function GetJobDone($id)
+    {
+        $job = Job::find($id);
+        $data = compact('job');
+        return view('labour.jobDone')->with($data);
+    }
+
+    public function JobDone(Request $request)
+    {
+       // dd($request);
+        if($request['job_id'] != null || $request['job_id'] != "")
+        {
+            $id = $request['job_id'];
+            $jobdone = Assigned_Job::find($id);
+            $jobdone->status = 'Completed';
+            $jobdone->save();
+            return redirect('/labour/assigned/jobs')->with('message','Job Completed Successfully');
+        }else
+        {
+            return redirect('/labour/assigned/jobs')->with('error','Something went wrong');
+        }
     }
 }

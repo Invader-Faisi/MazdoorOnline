@@ -77,6 +77,12 @@ Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('
 // Getting assigned jobs
 Route::get('labour/assigned/jobs', [LabourController::class, 'GetAssignedJobs'])->middleware('auth_labour');
 
+// Getting complete page
+Route::get('labour/job/complete/{id}', [LabourController::class, 'GetJobDone'])->middleware('auth_labour');
+
+// Job done
+Route::post('labour/job/complete', [LabourController::class, 'JobDone'])->middleware('auth_labour');
+
 /**
  * 
  *  All Routes below are employer for Labour
