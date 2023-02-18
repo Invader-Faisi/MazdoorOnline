@@ -35,7 +35,7 @@
                                                         <td>{{ $bid->bid }}</td>
                                                         <td>
                                                             <a type="button" class="btn btn-success btn-sm px-3"
-                                                                href="{{ url('/employer/labour') }}/{{ $bid->labour_id }}/{{ $job->id }}">
+                                                                href="{{ url('/employer/labour') }}/{{ $bid->labour_id }}/{{ $job->id }}/{{ $bid->id }}">
                                                                 <i class="fas fa-check"></i>
                                                             </a>
                                                         </td>

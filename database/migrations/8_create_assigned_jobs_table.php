@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('status', ['Pending', 'Completed', 'Rated'])->default('Pending');
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('labour_id')->constrained('labours');
+            $table->foreignId('biding_id')->constrained('bidings');
         });
     }
 

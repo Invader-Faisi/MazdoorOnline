@@ -93,7 +93,7 @@ Route::post('labour/job/complete', [LabourController::class, 'JobDone'])->middle
 Route::get('/employer/profile', [EmployerController::class, 'index'])->middleware('auth_employer');
 
 // Displaying single portfolio details for Employer
-Route::get('/employer/labour/{id}/{jobid?}/', [EmployerController::class, 'GetLabourPortfolio'])->middleware('auth_common');
+Route::get('/employer/labour/{id}/{jobid?}/{bid?}', [EmployerController::class, 'GetLabourPortfolio'])->middleware('auth_common');
 
 // Getting jobs posted by employer
 Route::get('/employer/jobs', [EmployerController::class, 'GetEmployerJobs'])->middleware('auth_employer');

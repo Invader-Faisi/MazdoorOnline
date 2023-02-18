@@ -18,4 +18,8 @@ class Biding extends Model
     {
         return $this->hasOne(Labour::class, 'id', 'labour_id');
     }
+    public function GetBidedJobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

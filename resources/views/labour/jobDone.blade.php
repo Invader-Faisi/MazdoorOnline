@@ -75,7 +75,7 @@
                                     <p class="mb-0">Approved Bid</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ $job->GetBid->bid }}</p>
+                                    <p class="text-muted mb-0">{{ $job->GetAssignedLabour->GetApprovedBid->bid }}</p>
                                 </div>
                             </div>
                             <hr>

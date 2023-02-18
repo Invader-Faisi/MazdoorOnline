@@ -12,7 +12,7 @@ class Assigned_Job extends Model
     protected $table = 'assigned_jobs';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['status', 'job_id', 'labour_id'];
+    protected $fillable = ['status', 'job_id', 'labour_id', 'biding_id'];
 
     public function GetLabour()
     {
@@ -31,6 +31,7 @@ class Assigned_Job extends Model
 
     public function GetApprovedBid()
     {
-        return $this->hasOne(Biding::class, 'id', 'labour_id');
+        return $this->hasOne(Biding::class, 'id', 'biding_id');
     }
+
 }

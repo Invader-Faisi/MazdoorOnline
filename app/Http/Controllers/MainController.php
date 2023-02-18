@@ -136,6 +136,7 @@ class MainController extends Controller
             $result = $user->save();
 
             if ($result) {
+                session()->put('user_name', $user->name);
                 return redirect()->back()->with('message', 'Profile Updated Successfully');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong');

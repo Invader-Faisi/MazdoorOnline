@@ -6,6 +6,7 @@ use App\Models\Assigned_Job;
 use App\Models\Employer;
 use App\Models\Portfolio;
 use App\Models\Job;
+use App\Models\Biding;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -23,10 +24,11 @@ class EmployerController extends Controller
         return view('employer.index')->with($data);
     }
 
-    public function GetLabourPortfolio($id, $jobid = null, $assigned = false)
+    public function GetLabourPortfolio($id, $jobid = null, $bidid = null, $assigned = false)
     {
         $portfolio = Portfolio::find($id);
-        $data = compact('portfolio', 'jobid', 'assigned');
+        $bid = Biding::find($bidid);
+        $data = compact('portfolio', 'jobid','bid' ,'assigned');
         return view('employer.portfolioDetails')->with($data);
     }
 
@@ -68,7 +70,7 @@ class EmployerController extends Controller
 
     public function AssignJob(Request $request)
     {
-        if ($request['job_id'] && $request['labour_id'] != null) {
+        if ($request['job_id'] && $request['labour_id'] && $request['biding_id'] != null) {
             $job = Job::find($request['job_id']);
             $job->status = "Assigned";
             $result = $job->save();
@@ -76,6 +78,7 @@ class EmployerController extends Controller
                 $assignment = new Assigned_Job();
                 $assignment->job_id = $request['job_id'];
                 $assignment->labour_id = $request['labour_id'];
+                $assignment->biding_id = $request['biding_id'];
                 $assignment->save();
                 return redirect('employer/assigned/jobs')->with('message', 'Job assigned successfully');
             } else {

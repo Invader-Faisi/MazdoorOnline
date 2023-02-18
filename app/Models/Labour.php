@@ -19,14 +19,10 @@ class Labour extends Model
     {
         return $this->hasMany(Portfolio::class);
     }
-
-    public function GetBid()
-    {
-        return $this->hasOne(Biding::class, 'labour_id');
-    }
-
     public function GetMyJobs()
     {
         return $this->hasMany(Assigned_Job::class, 'labour_id');
     }
+
+    
 }

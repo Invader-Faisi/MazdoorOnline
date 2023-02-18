@@ -89,7 +89,7 @@ class LabourController extends Controller
     {
         $id = $this->GetLabourId();
         $labour = labour::find($id);
-        $jobs = $labour->GetMyJobs;
+        $jobs = $labour->GetMyJobs;        
         $data = compact('jobs');
         return view('labour.assignedJobs')->with($data);
     }
@@ -103,7 +103,6 @@ class LabourController extends Controller
 
     public function JobDone(Request $request)
     {
-       // dd($request);
         if($request['job_id'] != null || $request['job_id'] != "")
         {
             $id = $request['job_id'];

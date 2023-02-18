@@ -1,4 +1,4 @@
-@props(['jobid', 'labourid'])
+@props(['jobid', 'labourid', 'bid'])
 <!-- Modal For Biding-->
 <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -13,6 +13,7 @@
                     <p class="fw-bold h6 text-danger">Are you sure you want to assign the job !!!</p>
                     <input type="hidden" name="job_id" value="{{ $jobid }}" />
                     <input type="hidden" name="labour_id" value="{{ $labourid }}" />
+                    <input type="hidden" name="biding_id" value="{{ $bid }}" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Confirm</button>
