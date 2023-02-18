@@ -150,15 +150,6 @@ class MainController extends Controller
         $rating->rating_by = $request['rating_by'];
         $rating->assigned_job_id = $request['assigned_job_id'];
 
-        if (session()->get('user_type') == "labour") {
-            $rating->employer_id = $request['ratedid'];
-            $rating->labour_id = session()->get('user_id');
-        }
-        if (session()->get('user_type')  == "employer") {
-            $rating->labour_id = $request['ratedid'];
-            $rating->employer_id = session()->get('user_id');
-        }
-
         $rating->save();
 
         return redirect()->back()->with('message', 'Ratings Added Successfully');

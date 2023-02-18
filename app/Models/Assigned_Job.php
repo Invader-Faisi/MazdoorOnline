@@ -28,4 +28,9 @@ class Assigned_Job extends Model
     {
         return $this->hasOne(Job::class, 'id', 'job_id');
     }
+
+    public function GetApprovedBid()
+    {
+        return $this->hasOne(Biding::class, 'id', 'labour_id');
+    }
 }
