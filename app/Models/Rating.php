@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['ratings', 'rating_by', 'employer_id', 'labour_id', 'assigned_job_id'];
+    protected $fillable = ['ratings', 'rating_by', 'labour_id',  'employer_id', 'assigned_job_id'];
 }

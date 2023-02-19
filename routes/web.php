@@ -69,7 +69,10 @@ Route::get('/labour/job/{id}', [LabourController::class, 'GetSingleJob'])->middl
 Route::get('/labour/portfolios', [LabourController::class, 'GetLabourPortfolios'])->middleware('auth_labour');
 
 // Creating portfolio of labour
-Route::post('/labour/portfolio', [LabourController::class, 'CreatePortfolio'])->middleware('auth_labour');
+Route::post('/labour/portfolio/create', [LabourController::class, 'CreatePortfolio'])->middleware('auth_labour');
+
+// Update portfolio of labour
+Route::post('/labour/portfolio/update/{id}', [LabourController::class, 'UpdatePortfolio'])->middleware('auth_labour');
 
 // Add biding by labour
 Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('auth_labour');

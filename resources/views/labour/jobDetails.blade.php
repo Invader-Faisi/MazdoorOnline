@@ -12,10 +12,11 @@
                             style="width: 150px;">
                         <h5 class="my-3">{{ $job->GetEmployer->name }}</h5>
                         <p class="text-muted mb-1">{{ $job->GetEmployer->email }}</p>
-                        <p class="text-muted mb-4">{{ $job->GetEmployer->contact }}</p>
-                        {{-- <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#rateModal">Rate Employer</button>
-                        </div> --}}
+                        <p class="text-muted mb-1">{{ $job->GetEmployer->contact }}</p>
+                        @if ($ratings != null)
+                        @for ($i = 0; $i < $ratings; $i++) <i class="fa fa-star text-danger"></i>
+                            @endfor
+                            @endif
                     </div>
                 </div>
             </div>

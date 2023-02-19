@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('ratings');
             $table->enum('rating_by', ['Employer', 'Labour']);
+            $table->foreignId('labour_id')->constrained('labours');
+            $table->foreignId('employer_id')->constrained('employers');
             $table->foreignId('assigned_job_id')->constrained('assigned_jobs');
         });
     }

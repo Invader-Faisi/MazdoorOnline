@@ -7,6 +7,7 @@ use App\Models\Employer;
 use App\Models\Portfolio;
 use App\Models\Job;
 use App\Models\Biding;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -20,7 +21,8 @@ class EmployerController extends Controller
     {
         $id = $this->GetEmployerId();
         $profile = Employer::find($id);
-        $data = compact('profile');
+        $ratings = Rating::where('rating_by', 'Labour')->where('employer_id', $id)->avg('ratings');
+        $data = compact('profile', 'ratings');
         return view('employer.index')->with($data);
     }
 
@@ -28,7 +30,8 @@ class EmployerController extends Controller
     {
         $portfolio = Portfolio::find($id);
         $bid = Biding::find($bidid);
-        $data = compact('portfolio', 'jobid','bid' ,'assigned');
+        $ratings = Rating::where('rating_by', 'Employer')->where('labour_id', $portfolio->id)->avg('ratings');
+        $data = compact('portfolio', 'jobid', 'bid', 'assigned', 'ratings');
         return view('employer.portfolioDetails')->with($data);
     }
 

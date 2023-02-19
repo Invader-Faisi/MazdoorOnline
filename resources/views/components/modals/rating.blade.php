@@ -18,6 +18,14 @@
                             required />
                         <label class="form-label" for="ratings">{{$rate}} Rating</label>
                         <input type="hidden" name="rating_by" value="{{$rating_by}}">
+                        @if ($rate == "Employer")
+                        <input type="hidden" name="employer_id" id="ratedid" value="">
+                        <input type="hidden" name="labour_id" value="{{session()->get('user_id')}}">
+                        @elseif($rate == "Labour")
+                        <input type="hidden" name="labour_id" id="ratedid" value="">
+                        <input type="hidden" name="employer_id" value="{{session()->get('user_id')}}">
+                        @endif
+
                         <input type="hidden" name="assigned_job_id" id="assigned_job_id" value="">
                     </div>
                     <div class="modal-footer">

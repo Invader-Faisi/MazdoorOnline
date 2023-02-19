@@ -1,4 +1,4 @@
-@props(['profile'])
+@props(['profile','ratings'])
 
 <div class="row">
     <div class="col-lg-4">
@@ -8,11 +8,15 @@
                     style="width: 150px;">
                 <h5 class="my-3">{{ $profile->name }}</h5>
                 <p class="text-muted mb-1">{{ $profile->email }}</p>
-                <p class="text-muted mb-4">{{ $profile->contact }}</p>
-                <div class="d-flex justify-content-center mb-2">
-                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                        data-mdb-target="#profileModal">Update Profile</button>
-                </div>
+                <p class="text-muted mb-1">{{ $profile->contact }}</p>
+                @if ($ratings != null)
+                @for ($i = 0; $i < $ratings; $i++) <i class="fa fa-star text-danger"></i>
+                    @endfor
+                    @endif
+                    <div class="d-flex justify-content-center mt-2 mb-2">
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#profileModal">Update Profile</button>
+                    </div>
             </div>
         </div>
     </div>

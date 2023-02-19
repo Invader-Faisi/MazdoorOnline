@@ -15,14 +15,16 @@ class Labour extends Model
 
     protected $fillable = ['name', 'email', 'address', 'contact', 'password'];
 
-    public function GetPortfolios()
+    public function GetPortfolio()
     {
-        return $this->hasMany(Portfolio::class);
+        return $this->hasOne(Portfolio::class);
     }
     public function GetMyJobs()
     {
         return $this->hasMany(Assigned_Job::class, 'labour_id');
     }
-
-    
+    public function GetRating()
+    {
+        return $this->hasMany(Rating::class, 'labour_id');
+    }
 }

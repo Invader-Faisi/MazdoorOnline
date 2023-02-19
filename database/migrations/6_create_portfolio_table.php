@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('hourly_rate');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->foreignId('labour_id')->constrained('labours');
+            $table->unique('labour_id');
         });
     }
 

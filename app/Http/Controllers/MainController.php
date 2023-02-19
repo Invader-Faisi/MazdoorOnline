@@ -17,9 +17,7 @@ class MainController extends Controller
     {
         $jobs = Job::where('status', 'Active')->paginate(3);
         $portfolios = Portfolio::where('status', 'Approved')->paginate(3);
-        $data['jobs'] = $jobs;
-        $data['portfolios'] = $portfolios;
-
+        $data = compact('jobs', 'portfolios');
         return view('index')->with($data);
     }
 
@@ -149,6 +147,8 @@ class MainController extends Controller
         $rating = new Rating();
         $rating->ratings = $request['ratings'];
         $rating->rating_by = $request['rating_by'];
+        $rating->employer_id = $request['employer_id'];
+        $rating->labour_id = $request['labour_id'];
         $rating->assigned_job_id = $request['assigned_job_id'];
 
         $rating->save();
