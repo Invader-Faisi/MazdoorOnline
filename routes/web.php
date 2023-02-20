@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\EmployerController;
-use App\Http\Controllers\LabourController;
-use App\Http\Controllers\MainController;
 use App\Models\Employer;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LabourController;
+use App\Http\Controllers\EmployerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,14 @@ Route::post('/rating', [MainController::class, 'SaveRating'])->middleware('auth_
 // Route for logout
 Route::get('/logout', [MainController::class, 'Logout']);
 
+/**
+ * 
+ *  All Routes below are used for admin
+ * 
+ */
+
+// Getting main page of admin
+Route::get('/admin', [AdminController::class, 'index']);
 
 /**
  * 
