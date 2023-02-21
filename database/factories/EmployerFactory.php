@@ -18,10 +18,11 @@ class EmployerFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => 'emp1@gmail.com',
             'address' => fake()->address(),
             'contact' => fake()->phoneNumber(),
-            'password' => '12345',
+            'password' => md5('12345'),
+
         ];
     }
 }

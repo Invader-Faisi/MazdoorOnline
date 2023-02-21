@@ -14,8 +14,8 @@ body {
 }
 
 @media (min-width: 992px) {
-    main {           
-        padding-left: 10%;
+    .admin-main {           
+        padding-left: 18.5%;
     }
 }
 /* Sidebar */
