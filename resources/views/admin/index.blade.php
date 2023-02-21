@@ -34,6 +34,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        @foreach ($categories as $category)
                         <div class="col-xl-3 col-sm-6 col-12 mb-4">
                             <div class="card shadow-5-strong">
                                 <div class="card-body">
@@ -42,12 +43,13 @@
                                             <i class="fab fa-laravel text-info fa-3x"></i>
                                         </div>
                                         <div class="text-end my-auto">
-                                            <p class="mb-0 fw-bold">Electrician</p>
+                                            <p class="mb-0 fw-bold">{{$category->category}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -180,19 +182,19 @@
                                     <p class="fw-bold mb-1">{{$job->description}}</p>
                                 </td>
                                 <td>
-                                    @if ($job->status == 'Active' || $job->status == 'Assigned')
+                                    @if ($job->status == 'Approved' || $job->status == 'Assigned')
                                     <span class="badge badge-dark rounded-pill d-inline">{{$job->status}}</span>
                                     @else
-                                    <span class="badge badge-warning rounded-pill d-inline">{{$job->status}}</span>
+                                    <span class="badge badge-danger rounded-pill d-inline">{{$job->status}}</span>
                                     @endif
 
                                 </td>
                                 <td>
-                                    @if ($job->status == 'Active' || $job->status == 'Assigned')
+                                    @if ($job->status == 'Approved' || $job->status == 'Assigned')
                                     <a class="btn btn-sm btn-info disabled"><i class="fas fa-edit fa-fw"></i></a>
                                     @else
-                                    <a class="btn btn-sm btn-success" data-mdb-toggle="modal"
-                                        data-mdb-target="#actionModal"><i class="fas fa-edit fa-fw"></i></a>
+                                    <a class="btn btn-sm btn-success update" data-id="{{$job->id}}" data-action="job"><i
+                                            class="fas fa-edit fa-fw"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -243,8 +245,7 @@
                                     @if ($portfolio->status == 'Approved')
                                     <span class="badge badge-dark rounded-pill d-inline">{{$portfolio->status}}</span>
                                     @else
-                                    <span
-                                        class="badge badge-warning rounded-pill d-inline">{{$portfolio->status}}</span>
+                                    <span class="badge badge-danger rounded-pill d-inline">{{$portfolio->status}}</span>
                                     @endif
 
                                 </td>
@@ -252,7 +253,9 @@
                                     @if ($portfolio->status == 'Approved')
                                     <a class="btn btn-sm btn-info disabled"><i class="fas fa-edit fa-fw"></i></a>
                                     @else
-                                    <a class="btn btn-sm btn-success"><i class="fas fa-edit fa-fw"></i></a>
+                                    <a class="btn btn-sm btn-success update" data-id="{{$portfolio->id}}"
+                                        data-action="portfolio">
+                                        <i class="fas fa-edit fa-fw"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -276,12 +279,46 @@
     <script type="text/javascript" src="{{ asset('/lib/js/jquery-3.4.1.min.js') }}"></script>
     <script>
     $(document).ready(function() {
+
+        // Approvals of job and portfolio
+        //------------------------------------------------------------------------------------------//
+        $('.update').click(function() {
+            var id = $(this).data('id');
+            var action = $(this).data('action');
+            $('#actionModalLabel').text('Approval for ' + action);
+            $('#label').text(action);
+            $('#entity').val(action);
+            $('#id').val(id);
+            // options input     
+
+            if (action === 'job') {
+                $('#action option').remove();
+                var option1 = 'Blocked';
+                var option2 = 'Remove';
+                $('#action').append(
+                    `<option value="Approved">Approve</option>
+                                <option value="${option1}">Block</option>
+                                <option value="${option2}">Remove</option>`
+                );
+            } else if (action === 'portfolio') {
+                $('#action option').remove();
+                var option1 = 'Rejected';
+                var option2 = 'Remove';
+                $('#action').append(
+                    `<option value="Approved">Approve</option>
+                                <option value="${option1}">Reject</option>
+                                <option value="${option2}">Remove</option>`
+                );
+            }
+            $('#actionModal').modal('show');
+        });
+
         // Activating navigation buttons
         $('.ripple').click(function() {
             $('a').removeClass('active');
             $(this).addClass('active');
         });
-
+        //------------------------------------------------------------------------------------------//
         /**
          * 
          * Scrolling up and down
@@ -322,7 +359,7 @@
                 scrollTop: eval($("#portfolios-section").offset().top - 90)
             }, 100);
         });
-
+        //------------------------------------------------------------------------------------------//
 
         // Filling the chart
         var ctx = $("#myChart");

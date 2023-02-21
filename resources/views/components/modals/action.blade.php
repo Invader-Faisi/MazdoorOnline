@@ -3,26 +3,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="actionModalLabel">Add Category</h5>
+                <h5 class="modal-title text-capitalize" id="actionModalLabel"></h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{url('/admin/action')}}">
                     @csrf
-                    <label class="form-label"> Approval for Job</label>
                     <!-- Approval input -->
-                    <div class="input-group">
-                        <div class="input-group-text">Job</div>
-                        <select class="select" id="job" name="job">
-                            <option value=""></option>
-                            <option value="Approve">Approve</option>
-                            <option value="Remove">Remove</option>
-                            <option value="Block">Corporate</option>
+                    <div class="input-group col-12">
+                        <div class="input-group-text col-3 text-capitalize" id="label"></div>
+                        <select class="select col-9" id="action" name="action" required>
                         </select>
+                        <input type="hidden" name="entity" id="entity" />
+                        <input type="hidden" name="id" id="id" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Category</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
