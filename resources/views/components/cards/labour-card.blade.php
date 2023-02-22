@@ -4,7 +4,8 @@
 
 $count = 0;
 $rate = 0;
-foreach($lab_rating as $rating){
+if($lab_rating != null){
+foreach($lab_rating->GetRating as $rating){
 if($rating->rating_by == "Employer" && $rating->labour_id == $Portfolio->labour_id){
 $count++;
 $rate += $rating->ratings;
@@ -13,7 +14,7 @@ $rate += $rating->ratings;
 if($count != 0){
 $rate = round($rate/$count);
 }
-
+}
 
 @endphp
 <div class="col-xl-4 col-md-12 mb-4">

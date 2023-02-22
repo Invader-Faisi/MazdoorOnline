@@ -9,9 +9,9 @@
                     <div class="card-body text-center">
                         <h5 class="my-1 text-primary">Labour</h5>
                         <img src="{{ asset('images/user.jpg') }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">{{ $portfolio->GetLabour->name }}</h5>
-                        <p class="text-muted mb-1">{{ $portfolio->GetLabour->email }}</p>
-                        <p class="text-muted mb-1">{{ $portfolio->GetLabour->contact }}</p>
+                        <h5 class="my-3">{{ $labour->name }}</h5>
+                        <p class="text-muted mb-1">{{ $labour->email }}</p>
+                        <p class="text-muted mb-1">{{ $labour->contact }}</p>
                         @if ($ratings != null)
                         @for ($i = 0; $i < $ratings; $i++) <i class="fa fa-star text-danger"></i>
                             @endfor

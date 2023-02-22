@@ -20,7 +20,7 @@
 
         <div class="row">
             @foreach ($portfolios as $portfolio)
-            <x-cards.labour-card :Portfolio="$portfolio" :lab_rating="$portfolio->GetLabour->GetRating" />
+            <x-cards.labour-card :Portfolio="$portfolio" :lab_rating="$portfolio->GetLabour" />
             @endforeach
         </div>
         <hr />
@@ -33,7 +33,7 @@
         <div class="row">
             @foreach ($jobs as $job)
 
-            <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer->GetRating" />
+            <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer" />
 
             @endforeach
         </div>

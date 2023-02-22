@@ -125,20 +125,12 @@ class LabourController extends Controller
         $id = $this->GetLabourId();
         $labour = labour::find($id);
         $jobs = $labour->GetMyJobs;
-        $ratings = array();
-
-        // foreach($jobs as $job){              
-        //     foreach($job->GetRatings as $rating)
-        //     {
-        //         if($job->id == $rating->assigned_job_id && $rating->rating_by == 'Employer')
-        //         {
-        //             $temp['job_id'] = $job->id;
-        //             $temp['status'] = true;
-        //             $temp['rating'] = $rating->ratings;
-        //         }
+        $ratings = null;
+        dd($labour);
+        // foreach ($jobs as $job) {
+        //     foreach ($job->GetRatings as $rating) {
+        //         $ratings = $rating;
         //     }
-
-        //     $ratings['array'] = $temp;
         // }
         // dd($ratings);
         $data = compact('jobs');

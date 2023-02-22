@@ -8,6 +8,7 @@ use App\Models\Portfolio;
 use App\Models\Job;
 use App\Models\Biding;
 use App\Models\Rating;
+use App\Models\Labour;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -28,10 +29,12 @@ class EmployerController extends Controller
 
     public function GetLabourPortfolio($id, $jobid = null, $bidid = null, $assigned = false)
     {
-        $portfolio = Portfolio::find($id);
+        $labour = Labour::find($id);
+        dd($labour);
+        $portfolio = Portfolio::where('labour_id', $id)->get();
         $bid = Biding::find($bidid);
-        $ratings = Rating::where('rating_by', 'Employer')->where('labour_id', $portfolio->id)->avg('ratings');
-        $data = compact('portfolio', 'jobid', 'bid', 'assigned', 'ratings');
+        $ratings = Rating::where('rating_by', 'Employer')->where('labour_id', $id)->avg('ratings');
+        $data = compact('labour', 'portfolio', 'jobid', 'bid', 'assigned', 'ratings');
         return view('employer.portfolioDetails')->with($data);
     }
 
@@ -73,6 +76,7 @@ class EmployerController extends Controller
 
     public function AssignJob(Request $request)
     {
+        dd($request->all());
         if ($request['job_id'] && $request['labour_id'] && $request['biding_id'] != null) {
             $job = Job::find($request['job_id']);
             $job->status = "Assigned";
