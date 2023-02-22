@@ -21,7 +21,7 @@ class PortfolioFactory extends Factory
             'experience' => fake()->numberBetween(2, 10),
             'skills' => fake()->slug(),
             'hourly_rate' => fake()->numberBetween(50, 100),
-            'labour_id' => fake()->numberBetween(1, 10),
+            'labour_id' => fake()->numberBetween(1, 3),
         ];
     }
 }

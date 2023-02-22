@@ -23,7 +23,7 @@ class JobFactory extends Factory
             'rate' => 'BId',
             'description' => fake()->sentence(),
             'job_rate' => fake()->numberBetween(100, 500),
-            'employer_id' => fake()->numberBetween(1, 10),
+            'employer_id' => fake()->numberBetween(1, 3),
         ];
     }
 }
