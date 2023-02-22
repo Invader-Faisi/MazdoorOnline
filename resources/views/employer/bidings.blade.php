@@ -23,7 +23,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($jobs as $job)
-                                            @if ($job->status == 'Active')
+                                            @if ($job->status == 'Approved')
                                                 @foreach ($job->GetBidings as $bid)
                                                     <tr>
                                                         <th scope="row">

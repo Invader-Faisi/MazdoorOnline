@@ -10,7 +10,7 @@
             </div>
             <div class="row">
                 @foreach ($jobs as $job)
-                    <x-cards.job-card :Job="$job" />
+                    <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer->GetRating" />
                 @endforeach
             </div>
             {{ $jobs->withQueryString()->links('pagination::bootstrap-5') }}

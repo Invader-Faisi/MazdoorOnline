@@ -2,8 +2,6 @@
 @php
     $rating_by = 'Labour';
     $rate = 'Employer';
-    $employerRating = false;
-    $labourRating = false;
 @endphp
 @section('content')
     <section style="background-color: #eee;">
@@ -42,6 +40,10 @@
                                                 <td>
                                                     @if ($job->status == 'Completed')
                                                         @foreach ($job->GetRatings as $rating)
+                                                            @php
+                                                                $employerRating = false;
+                                                                $labourRating = false;
+                                                            @endphp
                                                             @if ($rating->rating_by == 'Labour')
                                                                 @php
                                                                     $labourRating = true;
@@ -56,9 +58,6 @@
                                                                 @endfor
                                                             @endif
                                                         @endforeach
-                                                        @if ($employerRating == false)
-                                                            Not Rated Yet
-                                                        @endif
                                                     @else
                                                         Not Rated Yet
                                                     @endif

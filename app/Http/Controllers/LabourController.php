@@ -29,7 +29,7 @@ class LabourController extends Controller
 
     public function GetAllJobs()
     {
-        $jobs = Job::where('status', 'Active')->paginate(3);
+        $jobs = Job::where('status', 'Approved')->paginate(3);
         $data = compact('jobs');
         return view('labour.jobs')->with($data);
     }
@@ -125,6 +125,22 @@ class LabourController extends Controller
         $id = $this->GetLabourId();
         $labour = labour::find($id);
         $jobs = $labour->GetMyJobs;
+        $ratings = array();
+
+        // foreach($jobs as $job){              
+        //     foreach($job->GetRatings as $rating)
+        //     {
+        //         if($job->id == $rating->assigned_job_id && $rating->rating_by == 'Employer')
+        //         {
+        //             $temp['job_id'] = $job->id;
+        //             $temp['status'] = true;
+        //             $temp['rating'] = $rating->ratings;
+        //         }
+        //     }
+
+        //     $ratings['array'] = $temp;
+        // }
+        // dd($ratings);
         $data = compact('jobs');
         return view('labour.assignedJobs')->with($data);
     }
