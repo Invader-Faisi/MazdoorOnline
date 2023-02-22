@@ -19,8 +19,7 @@ class AuthenticLabour
         if (session()->has('user_type') && session()->get('user_type') == "labour") {
             return $next($request);
         } else {
-            session()->flush();
-            return redirect('/')->with('error', 'Please Login to Proceed');
+            return redirect()->back()->with('errors', 'You are not allowed to visit this page');
         }
     }
 }

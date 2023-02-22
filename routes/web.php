@@ -18,10 +18,8 @@ use App\Http\Controllers\EmployerController;
 |
 */
 
-
 /**
- * 
- *  All Routes below are for general use
+ * Commen Route
  * 
  */
 
@@ -41,14 +39,23 @@ Route::get('/login', [MainController::class, 'Login']);
 // Route for logging in
 Route::post('/login', [MainController::class, 'AuthenticateUser']);
 
-// Route for both of labour and Employer profile updating 
-Route::post('/profile', [MainController::class, 'UpdateProfile'])->middleware('auth_common');
-
-// Rating for both of Labour and Employer rating
-Route::post('/rating', [MainController::class, 'SaveRating'])->middleware('auth_common');
-
 // Route for logout
 Route::get('/logout', [MainController::class, 'Logout']);
+
+//Common routes for employer and labour
+Route::middleware('auth_common')->group(function () {
+    // Route for both of labour and Employer profile updating 
+    Route::post('/profile', [MainController::class, 'UpdateProfile']);
+
+    // Rating for both of Labour and Employer rating
+    Route::post('/rating', [MainController::class, 'SaveRating']);
+
+    // Getting detail of single job for labour
+    Route::get('/labour/job/{id}', [LabourController::class, 'GetSingleJob']);
+
+    // Displaying single portfolio details for Employer
+    Route::get('/employer/labour/{id}/{jobid?}/{bid?}', [EmployerController::class, 'GetLabourPortfolio']);
+});
 
 /**
  * 
@@ -56,8 +63,17 @@ Route::get('/logout', [MainController::class, 'Logout']);
  * 
  */
 
-// Getting main page of admin
-Route::get('/admin', [AdminController::class, 'index']);
+Route::middleware('auth_admin')->group(function () {
+    // Getting main page of admin
+    Route::get('/admin', [AdminController::class, 'index']);
+
+    // Updating Admin actions
+    Route::post('/admin/action', [AdminController::class, 'Actions']);
+
+    // Admin adding categories
+    Route::post('/admin/category', [AdminController::class, 'AddCategory']);
+});
+
 
 /**
  * 
@@ -65,35 +81,35 @@ Route::get('/admin', [AdminController::class, 'index']);
  * 
  */
 
-// Displaying profile page of labour
-Route::get('/labour/profile', [LabourController::class, 'index'])->middleware('auth_labour');
+Route::middleware('auth_labour')->group(function () {
 
-// Getting all jobs for labour
-Route::get('/labour/jobs', [LabourController::class, 'GetAllJobs'])->middleware('auth_labour');
+    // Displaying profile page of labour
+    Route::get('/labour/profile', [LabourController::class, 'index']);
 
-// Getting detail of single job for labour
-Route::get('/labour/job/{id}', [LabourController::class, 'GetSingleJob'])->middleware('auth_common');
+    // Getting all jobs for labour
+    Route::get('/labour/jobs', [LabourController::class, 'GetAllJobs']);
 
-// Getting portfolios of labour
-Route::get('/labour/portfolios', [LabourController::class, 'GetLabourPortfolios'])->middleware('auth_labour');
+    // Getting portfolios of labour
+    Route::get('/labour/portfolios', [LabourController::class, 'GetLabourPortfolios']);
 
-// Creating portfolio of labour
-Route::post('/labour/portfolio/create', [LabourController::class, 'CreatePortfolio'])->middleware('auth_labour');
+    // Creating portfolio of labour
+    Route::post('/labour/portfolio/create', [LabourController::class, 'CreatePortfolio']);
 
-// Update portfolio of labour
-Route::post('/labour/portfolio/update/{id}', [LabourController::class, 'UpdatePortfolio'])->middleware('auth_labour');
+    // Update portfolio of labour
+    Route::post('/labour/portfolio/update/{id}', [LabourController::class, 'UpdatePortfolio']);
 
-// Add biding by labour
-Route::post('/labour/bid', [LabourController::class, 'AddBiding'])->middleware('auth_labour');
+    // Add biding by labour
+    Route::post('/labour/bid', [LabourController::class, 'AddBiding']);
 
-// Getting assigned jobs
-Route::get('labour/assigned/jobs', [LabourController::class, 'GetAssignedJobs'])->middleware('auth_labour');
+    // Getting assigned jobs
+    Route::get('labour/assigned/jobs', [LabourController::class, 'GetAssignedJobs']);
 
-// Getting complete page
-Route::get('labour/job/complete/{id}', [LabourController::class, 'GetJobDone'])->middleware('auth_labour');
+    // Getting complete page
+    Route::get('labour/job/complete/{id}', [LabourController::class, 'GetJobDone']);
 
-// Job done
-Route::post('labour/job/complete', [LabourController::class, 'JobDone'])->middleware('auth_labour');
+    // Job done
+    Route::post('labour/job/complete', [LabourController::class, 'JobDone']);
+});
 
 /**
  * 
@@ -101,23 +117,22 @@ Route::post('labour/job/complete', [LabourController::class, 'JobDone'])->middle
  * 
  */
 
-// Displaying profile page of Employer
-Route::get('/employer/profile', [EmployerController::class, 'index'])->middleware('auth_employer');
+Route::middleware('auth_employer')->group(function () {
+    // Displaying profile page of Employer
+    Route::get('/employer/profile', [EmployerController::class, 'index']);
 
-// Displaying single portfolio details for Employer
-Route::get('/employer/labour/{id}/{jobid?}/{bid?}', [EmployerController::class, 'GetLabourPortfolio'])->middleware('auth_common');
+    // Getting jobs posted by employer
+    Route::get('/employer/jobs', [EmployerController::class, 'GetEmployerJobs']);
 
-// Getting jobs posted by employer
-Route::get('/employer/jobs', [EmployerController::class, 'GetEmployerJobs'])->middleware('auth_employer');
+    // Posting job by employer
+    Route::post('/employer/job', [EmployerController::class, 'CreateJob']);
 
-// Posting job by employer
-Route::post('/employer/job', [EmployerController::class, 'CreateJob'])->middleware('auth_employer');
+    // Assigning job to labour
+    Route::post('/employer/job/assign', [EmployerController::class, 'AssignJob']);
 
-// Assigning job to labour
-Route::post('/employer/job/assign', [EmployerController::class, 'AssignJob'])->middleware('auth_employer');
+    // Getting bids from labour on posted job
+    Route::get('/employer/bids', [EmployerController::class, 'GetBiding']);
 
-// Getting bids from labour on posted job
-Route::get('/employer/bids', [EmployerController::class, 'GetBiding'])->middleware('auth_employer');
-
-// Getting assigned jobs
-Route::get('employer/assigned/jobs', [EmployerController::class, 'GetAssignedJobs'])->middleware('auth_employer');
+    // Getting assigned jobs
+    Route::get('employer/assigned/jobs', [EmployerController::class, 'GetAssignedJobs']);
+});

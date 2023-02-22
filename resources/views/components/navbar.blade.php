@@ -38,6 +38,11 @@
             </li>
             @endif
             @endif
+            @if (session()->get('user_type') == 'admin')
+            <li class="nav-item">
+                <a class="nav-link" href="#">Mazdoor Online&nbsp;<strong class="text-primary">Admin Panel</strong></a>
+            </li>
+            @endif
         </ul>
         <!-- Left links -->
     </div>
@@ -69,9 +74,11 @@
                 <i class="fa fa-user fa-2x"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                @if (session()->get('user_type') != 'admin')
                 <li>
                     <a class="dropdown-item" href="{{ url('/') }}/{{ session()->get('user_type') }}/profile">Profile</a>
                 </li>
+                @endif
                 <li>
                     <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
                 </li>
