@@ -11,9 +11,9 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="input-group">
-                            <div class="input-group-text">Category</div>
-                            <select class="select col-9" id="category" name="category">
-                                <option value="{{ old('category') }}"></option>
+                            <div class="input-group-text">Company</div>
+                            <select class="select col-9" id="category" name="category" required>
+                                <option value="{{ old('category') }}">{{ old('category') }}</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Corporate">Corporate</option>
                             </select>
@@ -27,12 +27,12 @@
 
                     <div class="col-4">
                         <div class="input-group">
-                            <div class="input-group-text">Title</div>
-                            <select class="select col-10" id="title" name="title">
-                                <option value="{{ old('title') }}"></option>
-                                <option value="Driver">Driver</option>
-                                <option value="Carpenter">Carpenter</option>
-                                <option value="Contractor">Contractor</option>
+                            <div class="input-group-text">Category</div>
+                            <select class="select col-9" id="title" name="title" required>
+                                <option value="{{ old('title') }}">{{ old('title') }}</option>
+                                @foreach ($categories as $category)
+                                <option value="{{$category->category}}">{{$category->category}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <p class="text-danger">
@@ -45,8 +45,8 @@
                     <div class="col-4">
                         <div class="input-group">
                             <div class="input-group-text">Offer</div>
-                            <select class="select col-10" id="rate" name="rate">
-                                <option value="{{ old('rate') }}"></option>
+                            <select class="select col-10" id="rate" name="rate" required>
+                                <option value="{{ old('rate') }}">{{ old('rate') }}</option>
                                 <option value="Fixed">Fixed</option>
                                 <option value="Bid">Bid</option>
                             </select>
@@ -61,7 +61,7 @@
                         <div class="input-group">
                             <div class="input-group-text">Location</div>
                             <input type="text" class="form-control" id="location" name="location" placeholder="Location"
-                                value="{{ old('location') }}" />
+                                value="{{ old('location') }}" required />
                         </div>
                         <p class="text-danger">
                             @error('location')
@@ -74,7 +74,7 @@
                         <div class="input-group">
                             <div class="input-group-text">Job Rate</div>
                             <input type="text" class="form-control" id="job_rate" name="job_rate"
-                                placeholder="Job Rate (Rs)" value="{{ old('job_rate') }}" />
+                                placeholder="Job Rate (Rs)" value="{{ old('job_rate') }}" required />
                         </div>
                         <p class="text-danger">
                             @error('job_rate')
@@ -87,7 +87,7 @@
                         <div class="input-group">
                             <div class="input-group-text">Description</div>
                             <textarea class="form-control" id="description" name="description" rows="2"
-                                value="{{ old('description') }}"></textarea>
+                                value="{{ old('description') }}" required></textarea>
                         </div>
                         <p class="text-danger">
                             @error('description')

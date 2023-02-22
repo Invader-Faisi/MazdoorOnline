@@ -125,14 +125,6 @@ class LabourController extends Controller
         $id = $this->GetLabourId();
         $labour = labour::find($id);
         $jobs = $labour->GetMyJobs;
-        $ratings = null;
-        dd($labour);
-        // foreach ($jobs as $job) {
-        //     foreach ($job->GetRatings as $rating) {
-        //         $ratings = $rating;
-        //     }
-        // }
-        // dd($ratings);
         $data = compact('jobs');
         return view('labour.assignedJobs')->with($data);
     }
@@ -140,6 +132,7 @@ class LabourController extends Controller
     public function GetJobDone($id)
     {
         $job = Job::find($id);
+        //dd($job->GetAssignedLabour);
         $data = compact('job');
         return view('labour.jobDone')->with($data);
     }

@@ -7,8 +7,8 @@ use App\Models\Employer;
 use App\Models\Portfolio;
 use App\Models\Job;
 use App\Models\Biding;
+use App\Models\Category;
 use App\Models\Rating;
-use App\Models\Labour;
 use Illuminate\Http\Request;
 
 class EmployerController extends Controller
@@ -29,12 +29,10 @@ class EmployerController extends Controller
 
     public function GetLabourPortfolio($id, $jobid = null, $bidid = null, $assigned = false)
     {
-        $labour = Labour::find($id);
-        dd($labour);
-        $portfolio = Portfolio::where('labour_id', $id)->get();
+        $portfolio = Portfolio::find($id);
         $bid = Biding::find($bidid);
-        $ratings = Rating::where('rating_by', 'Employer')->where('labour_id', $id)->avg('ratings');
-        $data = compact('labour', 'portfolio', 'jobid', 'bid', 'assigned', 'ratings');
+        $ratings = Rating::where('rating_by', 'Employer')->where('labour_id', $portfolio->id)->avg('ratings');
+        $data = compact('portfolio', 'jobid', 'bid', 'assigned', 'ratings');
         return view('employer.portfolioDetails')->with($data);
     }
 
@@ -42,8 +40,9 @@ class EmployerController extends Controller
     {
         $id = $this->GetEmployerId();
         $emp = Employer::find($id);
+        $categories = Category::all();
         $jobs = $emp->GetJobs;
-        $data = compact('jobs');
+        $data = compact('jobs', 'categories');
         return view('employer.postJob')->with($data);
     }
 
@@ -76,7 +75,6 @@ class EmployerController extends Controller
 
     public function AssignJob(Request $request)
     {
-        dd($request->all());
         if ($request['job_id'] && $request['labour_id'] && $request['biding_id'] != null) {
             $job = Job::find($request['job_id']);
             $job->status = "Assigned";

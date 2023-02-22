@@ -26,7 +26,7 @@
                         <input type="hidden" name="employer_id" value="{{session()->get('user_id')}}">
                         @endif
 
-                        <input type="hidden" name="assigned_job_id" id="assigned_job_id" value="">
+                        <input type="text" name="assigned_job_id" id="assigned_job_id" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>

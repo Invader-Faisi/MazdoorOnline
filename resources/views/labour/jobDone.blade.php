@@ -91,5 +91,5 @@
         </div>
     </div>
 </section>
-<x-modals.job-complete :jobid="$job->id" />
+<x-modals.job-complete :jobid="$job->GetAssignedLabour->id" />
 @endsection
