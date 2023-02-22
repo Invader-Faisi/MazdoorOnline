@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-<<<<<<< HEAD
         \App\Models\Employer::factory()->create([
             [
                 'name' => fake()->name(),
@@ -62,7 +61,7 @@ class DatabaseSeeder extends Seeder
                 'password' => '12345',
             ],
         ],Labour);
-=======
+
         \App\Models\Employer::create([
 
             'name' => fake()->name(),
@@ -108,7 +107,7 @@ class DatabaseSeeder extends Seeder
             'contact' => fake()->phoneNumber(),
             'password' => md5('12345'),
         ]);
->>>>>>> aa0d11675b42dae4e9e28180a40d65d0f1a3ab2f
+
         \App\Models\Job::factory(10)->create();
         \App\Models\Portfolio::factory(3)->create();
         // \App\Models\User::factory()->create([
