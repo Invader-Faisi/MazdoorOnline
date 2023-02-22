@@ -73,9 +73,7 @@ $rate = 'Labour';
                                                 <i class="fas fa-question text-white"></i>
                                             </a>
                                             @else
-                                            <a type="button" class="btn btn-info btn-sm px-3 rateModalBtn"
-                                                data-jobid="{{ $job->GetAssignedLabour->job_id }}"
-                                                data-ratedid="{{ $job->GetAssignedLabour->GetLabour->id }}">
+                                            <a type="button" class="btn btn-info btn-sm px-3 rateModalBtn" data-jobid="{{ $job->GetAssignedLabour->id }}" data-ratedid="{{ $job->GetAssignedLabour->GetLabour->id }}">
                                                 Rate
                                             </a>
                                             @endif
@@ -98,13 +96,13 @@ $rate = 'Labour';
 
 <script type="text/javascript" src="{{ asset('/lib/js/jquery-3.4.1.min.js') }}"></script>
 <script>
-$(document).ready(function() {
-    $('.rateModalBtn').click(function(e) {
-        var jobid = $(this).data('jobid');
-        var ratedid = $(this).data('ratedid');
-        $('#ratedid').val(ratedid);
-        $('#assigned_job_id').val(jobid);
-        $('#ratingModal').modal('show');
+    $(document).ready(function() {
+        $('.rateModalBtn').click(function(e) {
+            var jobid = $(this).data('jobid');
+            var ratedid = $(this).data('ratedid');
+            $('#ratedid').val(ratedid);
+            $('#assigned_job_id').val(jobid);
+            $('#ratingModal').modal('show');
+        });
     });
-});
 </script>

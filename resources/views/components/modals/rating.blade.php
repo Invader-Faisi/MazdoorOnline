@@ -14,8 +14,7 @@
                     <label class="form-label"> Rate Out of 5 </label>
                     <!-- Rating input -->
                     <div class="form-outline mb-4">
-                        <input type="number" id="ratings" name="ratings" class="form-control" max="5" min="0"
-                            required />
+                        <input type="number" id="ratings" name="ratings" class="form-control" max="5" min="0" required />
                         <label class="form-label" for="ratings">{{$rate}} Rating</label>
                         <input type="hidden" name="rating_by" value="{{$rating_by}}">
                         @if ($rate == "Employer")
@@ -26,7 +25,7 @@
                         <input type="hidden" name="employer_id" value="{{session()->get('user_id')}}">
                         @endif
 
-                        <input type="text" name="assigned_job_id" id="assigned_job_id" value="">
+                        <input type="hidden" name="assigned_job_id" id="assigned_job_id" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
