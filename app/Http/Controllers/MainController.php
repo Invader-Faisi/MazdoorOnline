@@ -85,7 +85,7 @@ class MainController extends Controller
         $password = md5($request['password']);
 
         $login = Login::where('email', $email)->where('password', $password)->first();
-
+        //dd($login);
         if ($login) {
             session()->put('email', $login->email);
             session()->put('user_type', $login->type);
@@ -106,6 +106,7 @@ class MainController extends Controller
             }
 
             if ($login->type == "admin") {
+
                 return redirect('/admin')->with('message', 'Welcome Admin');
             }
         } else {

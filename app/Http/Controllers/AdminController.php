@@ -19,13 +19,12 @@ class AdminController extends Controller
         $labours = Labour::all();
         $portfolios = Portfolio::all();
         $app_portfolio = Portfolio::where('status', 'Approved')->get();
-        $jobs = Job::all();        
+        $jobs = Job::all();
         $app_job = Job::where('status', 'Approved')->get();
-        $ass_jobs = Assigned_Job::all();
         $complete_job = Assigned_Job::where('status', 'Completed')->get();
         $pending_job = Assigned_Job::where('status', 'Pending')->get();
 
-        $data = compact('categories', 'employers', 'labours', 'portfolios', 'app_portfolio', 'jobs', 'app_job', 'ass_jobs','complete_job', 'pending_job');
+        $data = compact('categories', 'employers', 'labours', 'portfolios', 'app_portfolio', 'jobs', 'app_job', 'complete_job', 'pending_job');
         return view('admin.index')->with($data);
     }
 
