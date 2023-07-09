@@ -15,8 +15,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        $jobs = Job::where('status', 'Approved')->paginate(3);
-        $portfolios = Portfolio::where('status', 'Approved')->paginate(3);
+        $jobs = Job::where('status', 'Approved')->paginate(6);
+        $portfolios = Portfolio::where('status', 'Approved')->paginate(6);
         $data = compact('jobs', 'portfolios');
         return view('index')->with($data);
     }

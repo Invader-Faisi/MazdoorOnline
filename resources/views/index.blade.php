@@ -2,45 +2,41 @@
 
 @section('content')
 @if (!session()->has('user_type'))
+
 <!-- Hero section is only avaiable on main page -->
 <x-hero />
 <!-- /hero section -->
+
 @endif
 
-<h3 class="text-center py-4">
-    <small class="text-muted"><u>AVAILABLE LABOURS & JOBS</u></small>
-</h3>
+<h1 class="text-center py-4">
+    <small class="text-info"><u>LABOURS & JOBS</u></small>
+</h1>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mt-3 mb-1">
-                <h5 class="text-uppercase">portfolios</h5>
-            </div>
-        </div>
-
-        <div class="row">
-            @foreach ($portfolios as $portfolio)
-            <x-cards.labour-card :Portfolio="$portfolio" :lab_rating="$portfolio->GetLabour" />
-            @endforeach
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-12 mt-3 mb-1">
-                <h5 class="text-uppercase">jobs</h5>
-            </div>
-        </div>
-
-        <div class="row">
-            @foreach ($jobs as $job)
-
-            <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer" />
-
-            @endforeach
-        </div>
-
-
+    <div class="container-fluid">
         {{ $jobs->withQueryString()->links('pagination::bootstrap-5') }}
-
+        <div class="d-flex">
+            <div class="col-6 border-top border-end border-3 border-primary p-3">
+                <div class="col-12 pt-3 pb-3">
+                    <h4 class="text-uppercase text-center text-primary">portfolios</h4>
+                </div>
+                <div class="row">
+                    @foreach ($portfolios as $portfolio)
+                    <x-cards.labour-card :Portfolio="$portfolio" :lab_rating="$portfolio->GetLabour" />
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-6 border-top border-start border-3 border-primary p-3">
+                <div class="col-12 pt-3 pb-3">
+                    <h4 class="text-uppercase text-center text-primary">Jobs</h4>
+                </div>
+                <div class="row">
+                    @foreach ($jobs as $job)            
+                    <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer" />            
+                    @endforeach
+                </div>
+            </div>            
+        </div>                
     </div>
 </section>
 @endsection

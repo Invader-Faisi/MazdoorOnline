@@ -12,7 +12,7 @@
         @if (session()->get('user_type') != 'admin')
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="{{ url('/') }}">
-                <img src="{{ asset('/images/logo.jpg') }}" height="40" alt="Mazdoor Online" loading="lazy" />
+                <img src="{{ asset('/images/logo1.png') }}" height="40" alt="Mazdoor Online" loading="lazy" />
             </a>
         @endif
 

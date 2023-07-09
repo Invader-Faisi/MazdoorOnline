@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3 mb-1">
+            <h5 class="text-uppercase">portfolios</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach ($portfolios as $portfolio)
+        <x-cards.labour-card :Portfolio="$portfolio" :lab_rating="$portfolio->GetLabour" />
+        @endforeach
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-12 mt-3 mb-1">
+            <h5 class="text-uppercase">jobs</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach ($jobs as $job)
+
+        <x-cards.job-card :Job="$job" :emp_rating="$job->GetEmployer" />
+
+        @endforeach
+    </div>
+
+
+    {{ $jobs->withQueryString()->links('pagination::bootstrap-5') }}
+
+</div>

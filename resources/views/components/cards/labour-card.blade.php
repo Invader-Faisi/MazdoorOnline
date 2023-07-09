@@ -20,7 +20,7 @@ $rate = round($rate/$count);
 <div class="col-xl-4 col-md-12 mb-4">
     <div class="card">
         <div class="card-body d-flex flex-row">
-            <img src="{{ asset('/images/user.jpg') }}" class="rounded-circle me-3" height="50px" width="50px" alt="avatar" />
+            <img src="{{ asset('/images/emp.png') }}" class="rounded-circle me-3" height="50px" width="50px" alt="avatar" />
             <div>
                 <h6 class="card-title font-weight-bold mb-2">{{ $Portfolio->name }}</h6>
                 <div class="d-flex flex-row">
@@ -35,7 +35,7 @@ $rate = round($rate/$count);
             </div>
         </div>
         <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-            <img class="img-fluid" src="{{ asset('/images/jobs.jpg') }}" alt="Card image cap" />
+            <img class="img-fluid" src="{{ asset('/images/labour.png') }}" alt="Card image cap" style="width: 100%; height:200px"/>
             <a href="#!">
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
             </a>
