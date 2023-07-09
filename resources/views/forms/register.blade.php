@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container pt-5 my-5">
-    <h1 class="text-center text-bold text-primary">Registration Form</h1>
+    <h1 class="text-center text-bold text-primary text-capitalize">{{$user}} Registration Form</h1>
     <section class="mx-auto pt-5" style="max-width: 35rem;">
         <form method="POST" action="{{ url('/register') }}">
             @csrf

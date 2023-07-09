@@ -33,13 +33,13 @@
     </nav>
     <x-flash-message />
     <!-- Content of Main Page -->
-    <main class="mb-5">
+    <main class="mb-10">
         @yield('content')
     </main>
     <!-- /Content of Main Page -->
 
 
-    <footer class="text-center mt-5" style="background-color: #45637d;">
+    <footer class="text-center mt-5 fixed-bottom" style="background-color: #45637d;">
         <x-footer />
     </footer>
 
