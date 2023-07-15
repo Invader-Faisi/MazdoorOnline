@@ -216,7 +216,7 @@
                                     @if ($job->status == 'Approved')
                                     <span class="badge badge-success rounded-pill d-inline">{{ $job->status }}</span>
                                     @elseif ($job->status == 'Assigned')
-                                    <span class="badge badge-dark rounded-pill d-inline">{{ $job->status }}</span>
+                                    <span class="badge badge-dark rounded-pill d-inline">Job {{$job->GetAssignedLabour->status}}</span>                                    
                                     @else
                                     <span class="badge badge-danger rounded-pill d-inline">{{ $job->status }}</span>
                                     @endif
@@ -419,8 +419,8 @@
                         '{{ $app_job->count() }}',
                         '{{ $complete_job->count() }}', '{{ $pending_job->count() }}'
                     ],
-                    backgroundColor: "#00425A",
-                    borderColor: "#007bff",
+                    backgroundColor: "#fc03d3",
+                    borderColor: "#4f464d",
                     borderWidth: 0,
                     pointBackgroundColor: "#D61355",
                 }],

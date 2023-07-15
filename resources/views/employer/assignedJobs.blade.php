@@ -50,9 +50,9 @@ $rate = 'Labour';
                 </div>
                 <div class="card-footer">
                     @if ($job->GetAssignedLabour->status == 'Completed' && $emp_rating)
-                        <a class="btn btn-success disabled">Rate Labour</a>
+                        <a class="btn btn-success disabled">Completed</a>
                     @elseif($job->GetAssignedLabour->status == 'Pending')
-                        <a class="btn btn-danger disabled">Rate Labour</a>
+                        <a class="btn btn-danger disabled">Pending</a>
                     @else
                     <a type="button" class="btn btn-info btn-sm px-3 rateModalBtn" data-jobid="{{ $job->GetAssignedLabour->id }}"
                         data-ratedid="{{ $job->GetAssignedLabour->GetLabour->id }}">

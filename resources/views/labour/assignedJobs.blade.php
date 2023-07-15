@@ -6,90 +6,73 @@ $rate = 'Employer';
 @endphp
 @section('content')
 <section>
-    <div class="container-fluid py-5 mt-5">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
+    <h2 class="text text-center text-primary py-5 mt-5">MY JOBS</h2>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-3 g-3">
+            @foreach ($jobs as $job)
+            @php
+            $emp_rating = false;
+            $lab_rating = false;
+            @endphp
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{asset('images/job-done.png')}}" class="card-img-top" alt="Job Done" />
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-borderless mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">
-                                            <i class="fas fa-university text-danger"></i>
-                                        </th>
-                                        <th scope="col" class="fw-bold">Job</th>
-                                        <th scope="col" class="fw-bold">Location</th>
-                                        <th scope="col" class="fw-bold">Employer</th>
-                                        <th scope="col" class="fw-bold">Approved Bid</th>
-                                        <th scope="col" class="fw-bold">Status</th>
-                                        <th scope="col" class="fw-bold">Employer Rating</th>
-                                        <th scope="col" class="fw-bold">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($jobs as $job)
-                                    @php
-                                    $emp_rating = false;
-                                    $lab_rating = false;
-                                    @endphp
-                                    <tr>
-                                        <th scope="row">
-                                            <i class="fas fa-headset text-info"></i>
-                                        </th>
-                                        <td>{{ $job->GetJob->title }}</td>
-                                        <td>{{ $job->GetJob->location }}</td>
-                                        <td>{{ $job->GetJob->GetEmployer->name }}</td>
-                                        <td>{{ $job->GetApprovedBid->bid }}</td>
-                                        <td>{{ $job->status }}</td>
-                                        <td>
-                                            @if ($job->status == 'Completed')
-                                            @foreach ($job->GetRatings as $rating)
-                                            @if ($rating->rating_by == 'Employer')
-                                            @php
-                                            $emp_rating = true;
-                                            @endphp
-                                            @for ($i = 0; $i < $rating->ratings; $i++)
-                                                <i class="fa fa-star text-danger"></i>
-                                                @endfor
-                                                @endif
-                                                @if ($rating->rating_by == 'Labour')
-                                                @php
-                                                $lab_rating = true;
-                                                @endphp
-                                                @endif
-                                                @endforeach
-                                                @if (!$emp_rating)
-                                                Not Rated Yet
-                                                @endif
-                                                @endif
-                                        </td>
-                                        <td>
-                                            @if ($job->status == 'Completed' && $lab_rating)
-                                            <i class="fas fa-check text-success"></i>
-                                            @elseif($job->status == 'Pending')
-                                            <a href="{{ url('/labour/job/complete') }}/{{ $job->GetJob->id }}"
-                                                class="btn btn-success btn-sm px-3">
-                                                <i class="fas fa-check text-white"></i>
-                                            </a>
-                                            @else
-                                            <a type="button" class="btn btn-info btn-sm rateModalBtn"
-                                                data-jobid="{{ $job->id }}"
-                                                data-ratedid="{{ $job->GetJob->employer_id }}">
-                                                Rate
-                                            </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                        <h5 class="card-title">Job : <span class="text-primary"> {{$job->GetJob->title }}</span></h5>
+                        <p class="card-text">Location :<span class="text-danger">{{ $job->GetJob->location }}</span><br />
+                            <hr />
+                            Employer : <span
+                                class="text-success">{{ $job->GetJob->GetEmployer->name }}</span><br />
+                            Approved Bid : <span class="text-danger">{{ $job->GetApprovedBid->bid }}</span><br />
+                            Job Status : <span class="text-info">{{ $job->status }}</span><br />
+                            <span class="text-primary">Rating By Employer</span>
+
+                            @if ($job->status == 'Completed')
+                            @foreach ($job->GetRatings as $rating)
+                            @if ($rating->rating_by == 'Employer')
+                            @php
+                            $emp_rating = true;
+                            @endphp
+                            @for ($i = 0; $i < $rating->ratings; $i++)
+                                <i class="fa fa-star text-danger"></i>
+                                @endfor
+                                @endif
+                                @if ($rating->rating_by == 'Labour')
+                                @php
+                                $lab_rating = true;
+                                @endphp
+                                @endif
+                                @endforeach
+                                @if (!$emp_rating)
+                                Not Rated Yet
+                                @endif
+                                @endif
+                                
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        @if ($job->status == 'Completed' && $lab_rating)
+                        <a class="btn btn-success btn-sm disabled">Completed</a>
+                        @elseif($job->status == 'Pending')
+                        <a href="{{ url('/labour/job/complete') }}/{{ $job->GetJob->id }}" class="btn btn-danger btn-sm">
+                            Pending
+                        </a>
+                        @else
+                        <a type="button" class="btn btn-info btn-sm rateModalBtn" data-jobid="{{ $job->id }}"
+                            data-ratedid="{{ $job->GetJob->employer_id }}">
+                            Rate Employer
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
+            @endforeach
+    
         </div>
     </div>
+
+
+
 </section>
 <x-modals.rating :rating_by="$rating_by" :rate="$rate" />
 @endsection

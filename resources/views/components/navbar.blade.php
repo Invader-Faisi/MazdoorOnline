@@ -21,24 +21,24 @@
             @if (session()->has('user_type'))
                 @if (session()->get('user_type') == 'employer')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/employer/jobs') }}">Jobs</a>
+                        <a class="nav-link" href="{{ url('/employer/jobs') }}">POST JOB</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/employer/bids') }}">Bids</a>
+                        <a class="nav-link" href="{{ url('/employer/bids') }}">BIDINGS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/employer/assigned/jobs') }}">Assigned Jobs</a>
+                        <a class="nav-link" href="{{ url('/employer/assigned/jobs') }}">ASSIGNED JOBS</a>
                     </li>
                 @endif
                 @if (session()->get('user_type') == 'labour')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/labour/jobs') }}">Jobs</a>
+                        <a class="nav-link" href="{{ url('/labour/jobs') }}">JOBS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/labour/portfolios') }}">Portfolio</a>
+                        <a class="nav-link" href="{{ url('/labour/portfolios') }}">MY PORFOLIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/labour/assigned/jobs') }}">My Jobs</a>
+                        <a class="nav-link" href="{{ url('/labour/assigned/jobs') }}">MY JOBS</a>
                     </li>
                 @endif
             @endif

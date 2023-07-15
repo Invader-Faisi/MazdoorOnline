@@ -8,7 +8,7 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <h5 class="my-1 text-primary">Employer</h5>
-                        <img src="{{ asset('images/user.jpg') }}" alt="avatar" class="rounded-circle img-fluid"
+                        <img src="{{ asset('images/user.png') }}" alt="avatar" class="rounded-circle img-fluid"
                             style="width: 150px;">
                         <h5 class="my-3">{{ $job->GetEmployer->name }}</h5>
                         <p class="text-muted mb-1">{{ $job->GetEmployer->email }}</p>

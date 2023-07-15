@@ -50,9 +50,14 @@
                                         {{ $message }}
                                     @enderror
                                 </p>
+                                @if ($labour->GetPortfolio != null)
                                 <!-- Submit button -->
-                                <input type="submit" class="btn btn-primary btn-block mb-4" id="submit"
-                                    value="Create" />
+                                <input type="submit" class="btn btn-primary btn-block mb-4" id="submit" value="Create" disabled/>
+                                @else 
+                                <!-- Submit button -->
+                                <input type="submit" class="btn btn-primary btn-block mb-4" id="submit" value="Create" />
+                                @endif
+                                
                             </form>
                         </div>
                     </div>
@@ -62,7 +67,7 @@
                         <div class="rounded-top text-white d-flex flex-row"
                             style="background: rgb(34,193,195); height:250px;">
                             <div class="ms-5 mt-3 d-flex flex-column" style="width: 200px;">
-                                <img src="{{ asset('/images/user.jpg') }}" alt="image"
+                                <img src="{{ asset('/images/user.png') }}" alt="image"
                                     class="img-fluid img-thumbnail mt-5 mb-2" style="width: 200px; z-index: 1">
                                 <div class="small text-muted mb-0 ms-5" style="z-index: 1">
                                     @if ($ratings != null)
@@ -152,6 +157,7 @@
                 $('#skills').val('{{ $labour->GetPortfolio->skills }}');
                 $('#hourly_rate').val('{{ $labour->GetPortfolio->hourly_rate }}');
                 $('#submit').val('Update');
+                $('#submit').attr('disabled', false);
             });
         });
     </script>
