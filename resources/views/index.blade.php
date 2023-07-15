@@ -1,14 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-@if (!session()->has('user_type'))
-
-<!-- Hero section is only avaiable on main page -->
+<!-- Hero section  -->
 <x-hero />
 <!-- /hero section -->
-
-@endif
-
 <h1 class="text-center py-4">
     <small class="text-info"><u>LABOURS & JOBS</u></small>
 </h1>

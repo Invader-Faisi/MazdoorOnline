@@ -5,7 +5,7 @@ $rate = 'Employer';
 
 @endphp
 @section('content')
-<section style="background-color: #eee;">
+<section>
     <div class="container-fluid py-5 mt-5">
         <div class="row justify-content-center">
             <div class="col-12">

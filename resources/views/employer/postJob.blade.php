@@ -92,58 +92,49 @@
 
         <div class="col-8 border-start border-danger border-2">
             <h5 class="text-center text-bold text-primary">Your Jobs</h5>
-            <div class="container-fluid col-11 mt-4">
-                <div class="card shadow-2-strong" style="background-color: #f5f7fa;">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-borderless mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">
-                                            <i class="fas fa-university fa-lg text-success"></i>
-                                        </th>
-                                        <th scope="col" class="fw-bold">Company</th>
-                                        <th scope="col" class="fw-bold">Job</th>
-                                        <th scope="col" class="fw-bold">Location</th>
-                                        <th scope="col" class="fw-bold">Offer</th>
-                                        <th scope="col" class="fw-bold">Rate</th>
-                                        <th scope="col" class="fw-bold">Description</th>
-                                        <th scope="col" class="fw-bold">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($jobs as $job)
-                                    <tr>
-                                        <th scope="row">
-                                            <i class="fab fa-snapchat-square fa-lg text-info"></i>
-                                        </th>
-                                        <td>{{ $job->category }}</td>
-                                        <td>{{ $job->title }}</td>
-                                        <td>{{ $job->location }}</td>
-                                        <td>{{ $job->rate }}</td>
-                                        <td>{{ $job->job_rate }}</td>
-                                        <td>{{ $job->description }}</td>
-                                        <td>
+            <div class="container-fluid d-flex flex-wrap justify-content-between">              
+                @foreach ($jobs as $job)
+                    <div class="overflow-auto mb-5" style="height: 320px;">
+                        <div class="card m-2" style="max-width: 520px;">
+                            <div class="card">
+                                <img src="{{asset('/images/job.jpg')}}" height="200px" class="card-img-top"
+                                    alt="JOB">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $job->title }}</h5>
+                                    <p class="card-text">
+                                        <p style="font-size: 12px">Type : {{ $job->category }}</p>
+                                        <p style="font-size: 12px">Location :{{ $job->location }}</p>
+                                        <p class="card-text">
+                                            {{ $job->description }}
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">Rate Type : {{ $job->rate }}</small>
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">Rate : {{ $job->job_rate }}</small>
+                                        </p>
+                                        <p class="card-text">
                                             @if ($job->status == 'Pending')
-                                            <span
-                                                class="badge badge-warning rounded-pill d-inline">{{ $job->status }}</span>
-                                            @else
-                                            <span
-                                                class="badge badge-success rounded-pill d-inline">{{ $job->status }}</span>
+                                            <span class="badge badge-warning rounded-pill d-inline">{{ $job->status }}</span>
+                                            @elseif($job->status == 'Assigned')
+                                            @foreach ($jobstatus as $status)
+                                            @if ($status->job_id == $job->id && $status->status == 'Completed')
+                                            <span class="badge badge-success rounded-pill d-inline">Job Completed</span>
                                             @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                            @endforeach
+                                            @else
+                                            <span class="badge badge-success rounded-pill d-inline">{{ $job->status }}</span>
+                                            @endif
+                                        </p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>                   
+                @endforeach
             </div>
         </div>
     </div>
 </section> 
-
-
 @endsection
 

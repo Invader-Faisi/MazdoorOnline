@@ -22,4 +22,8 @@ class Biding extends Model
     {
         return $this->hasMany(Job::class);
     }
+    public function GetJob()
+    {
+        return $this->hasOne(Job::class, 'id', 'job_id');
+    }
 }

@@ -24,8 +24,8 @@ $rate = round($rate/$count);
             <div>
                 <h6 class="card-title font-weight-bold mb-2">{{ $Portfolio->name }}</h6>
                 <div class="d-flex flex-row">
-                    <p style="font-size: 12px">Labour Rating :</p>
-                    <div class="text-danger me-2" style="font-size:12px">
+                    <p style="font-size: 10px">Labour Rating :</p>
+                    <div class="text-danger me-2" style="font-size:10px">
                         @if ($lab_rating != null)
                         @for ($i = 0; $i < $rate; $i++) <i class="fa fa-star text-danger"></i>
                             @endfor

@@ -42,7 +42,8 @@ class EmployerController extends Controller
         $emp = Employer::find($id);
         $categories = Category::all();
         $jobs = $emp->GetJobs;
-        $data = compact('jobs', 'categories');
+        $jobstatus = Assigned_Job::all();
+        $data = compact('jobs', 'categories', 'jobstatus');
         return view('employer.postJob')->with($data);
     }
 

@@ -39,7 +39,7 @@
     <!-- /Content of Main Page -->
 
 
-    <footer class="text-center mt-5 fixed-bottom" style="background-color: #45637d;">
+    <footer class="text-center" style="background-color: #45637d;">
         <x-footer />
     </footer>
 

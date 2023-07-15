@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<section style="background-color: #eee;">
-    <div class="container py-5 mt-5">
+<section>
+    <h2 class="text text-center text-primary py-5 mt-5">Labour Profile</h2>
+    <div class="container py-5">
         <div class="row">
             <div class="col-lg-4">
                 <div class="card mb-4">
@@ -61,6 +62,13 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">Rs :&nbsp;{{ $bid->bid }}</p>
+                            </div>
+                            <hr/>
+                            <div class="col-sm-3">
+                                <p class="mb-0">Bid For</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ $bid->GetJob->title}}&nbsp;Job</p>
                             </div>
                             @endif
 
