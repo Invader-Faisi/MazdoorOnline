@@ -42,6 +42,19 @@ Route::post('/login', [MainController::class, 'AuthenticateUser']);
 // Route for logout
 Route::get('/logout', [MainController::class, 'Logout']);
 
+// Route for about us
+Route::get('/about-us', function () {
+    return view('about-us');
+});
+
+// Route for contact-us
+Route::get(
+    '/contact-us',
+    function () {
+        return view('contact-us');
+    }
+);
+
 //Common routes for employer and labour
 Route::middleware('auth_common')->group(function () {
     // Route for both of labour and Employer profile updating 

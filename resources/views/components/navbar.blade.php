@@ -17,7 +17,7 @@
         @endif
 
         <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">            
             @if (session()->has('user_type'))
                 @if (session()->get('user_type') == 'employer')
                     <li class="nav-item">
@@ -48,6 +48,12 @@
                             Panel</strong></a>
                 </li>
             @endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/about-us') }}">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/contact-us') }}">CONTACT US</a>
+            </li>
         </ul>
         <!-- Left links -->
     </div>
