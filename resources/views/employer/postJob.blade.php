@@ -86,7 +86,7 @@
                     <div class="col-8">
                         <div class="input-group">
                             <div class="input-group-text">Description</div>
-                            <textarea class="form-control" id="description" name="description" rows="2"
+                            <textarea class="form-control" id="description" name="description" rows="6"
                                 value="{{ old('description') }}" required></textarea>
                         </div>
                         <p class="text-danger">
